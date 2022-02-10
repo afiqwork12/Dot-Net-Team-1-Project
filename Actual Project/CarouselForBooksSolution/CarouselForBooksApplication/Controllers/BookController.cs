@@ -30,7 +30,7 @@ namespace CarouselForBooksApplication.Controllers
         // GET: BookController/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Book());
         }
 
         // POST: BookController/Create
@@ -40,6 +40,7 @@ namespace CarouselForBooksApplication.Controllers
         {
             try
             {
+                _repo.Add(book);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -51,16 +52,17 @@ namespace CarouselForBooksApplication.Controllers
         // GET: BookController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(_repo.GetT(id));
         }
 
         // POST: BookController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Book book)
+        public ActionResult Edit(Book book)
         {
             try
             {
+                _repo.Update(book);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -72,16 +74,17 @@ namespace CarouselForBooksApplication.Controllers
         // GET: BookController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(_repo.GetT(id));
         }
 
         // POST: BookController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Book book)
+        public ActionResult Delete(Book book)
         {
             try
             {
+                _repo.Delete(book.Id);
                 return RedirectToAction(nameof(Index));
             }
             catch
