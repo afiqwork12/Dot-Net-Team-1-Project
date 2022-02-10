@@ -27,7 +27,7 @@ namespace CarouselForBooksApplication.Services
 
         public ICollection<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Users.ToList();
         }
 
         public User GetT(int k)

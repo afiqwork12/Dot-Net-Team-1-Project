@@ -36,3 +36,5 @@ D:\teamproject\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\Ca
 D:\teamproject\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.genruntimeconfig.cache
 D:\teamproject\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.csproj.CopyComplete
 D:\teamproject\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Home\Login.cshtml.g.cs
+D:\teamproject\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Home\ChangePassword.cshtml.g.cs
+D:\teamproject\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Home\EditProfile.cshtml.g.cs

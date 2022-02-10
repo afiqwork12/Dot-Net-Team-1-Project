@@ -21,7 +21,8 @@ namespace CarouselForBooksApplication.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var users = _repo.GetAll();
+            return View(users);
         }
         public IActionResult Registration()
         {
