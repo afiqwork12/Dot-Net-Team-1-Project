@@ -24,7 +24,7 @@ namespace CarouselForBooksApplication.Controllers
         // GET: BookController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(_repo.GetT(id));
         }
 
         // GET: BookController/Create
