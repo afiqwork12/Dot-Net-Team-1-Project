@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "c09c5853-5778-4cf9-8179-76218212b592": {
+      "ProjectGuid": "c09c5853-5778-4cf9-8179-76218212b592",
+      "DisplayName": "CarouselForBooksApplication",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
