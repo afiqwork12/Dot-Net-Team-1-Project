@@ -33,7 +33,13 @@ namespace CarouselForBooksApplication.Services
             modelBuilder.Entity<Book>().HasData(
                 new Book() { Id = 1, Title = "Title 1", Description = "Description 1", Language = "English", Cost = 22.2, Picture = "/images/book1.jpg", DatePosted = DateTime.Now, IsSold = false, UserId = 1 },
                 new Book() { Id = 2, Title = "Title 2", Description = "Description 2", Language = "English", Cost = 22.2, Picture = "/images/book2.jfif", DatePosted = DateTime.Now, IsSold = false, UserId = 1 },
-                new Book() { Id = 3, Title = "Title 3", Description = "Description 3", Language = "English", Cost = 22.2, Picture = "/images/book3.jpg", DatePosted = DateTime.Now, IsSold = false, UserId = 1 }
+                new Book() { Id = 3, Title = "Title 3", Description = "Description 3", Language = "English", Cost = 22.2, Picture = "/images/book3.jpg", DatePosted = DateTime.Now, IsSold = false, UserId = 1 },
+                new Book() { Id = 4, Title = "Title 4", Description = "Description 4", Language = "English", Cost = 22.2, Picture = "/images/book4.jfif", DatePosted = DateTime.Now, IsSold = false, UserId = 1 },
+                new Book() { Id = 5, Title = "Title 5", Description = "Description 5", Language = "English", Cost = 22.2, Picture = "/images/book5.png", DatePosted = DateTime.Now, IsSold = false, UserId = 1 },
+                new Book() { Id = 6, Title = "Title 6", Description = "Description 6", Language = "English", Cost = 22.2, Picture = "/images/book6.jfif", DatePosted = DateTime.Now, IsSold = false, UserId = 1 },
+                new Book() { Id = 7, Title = "Title 7", Description = "Description 7", Language = "English", Cost = 22.2, Picture = "/images/book7.jpg", DatePosted = DateTime.Now, IsSold = false, UserId = 1 },
+                new Book() { Id = 8, Title = "Title 8", Description = "Description 8", Language = "English", Cost = 22.2, Picture = "/images/book8.jpg", DatePosted = DateTime.Now, IsSold = false, UserId = 1 },
+                new Book() { Id = 9, Title = "Title 9", Description = "Description 9", Language = "English", Cost = 22.2, Picture = "/images/book9.jpg", DatePosted = DateTime.Now, IsSold = false, UserId = 1 }
             );
             modelBuilder.Entity<Genre>().HasData(
                 new Genre() { Id = 1, Name = "Fiction" },
