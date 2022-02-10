@@ -36,6 +36,7 @@ namespace CarouselForBooksApplication
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IRepo<int, User>, UserEFRepo>();
+            services.AddScoped<IRepo<int, Book>, BookEFRepo>();
             services.AddDbContext<CFBDBContext>(
                 options =>
                 {
@@ -63,7 +64,7 @@ namespace CarouselForBooksApplication
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Book}/{action=Index}/{id?}");
             });
         }
     }

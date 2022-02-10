@@ -1,0 +1,26 @@
+﻿@model IEnumerable<CarouselForBooksApplication.Models.Book>
+<style>
+    #divCard {
+        position: relative;
+        float: left;
+        margin: 10px;
+    }
+</style>
+<h1>Book Listings</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div id="divCard" class="card border-dark">
+                <img class="card-img-top" src="@Url.Content(item.Picture)" alt="Card image cap" height="350" width="250">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text">@item.Description</p>
+                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Add To Cart</a> |
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">View Details</a>
+                    @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                </div>
+            </div>
+        </div>
+    }
+</div>

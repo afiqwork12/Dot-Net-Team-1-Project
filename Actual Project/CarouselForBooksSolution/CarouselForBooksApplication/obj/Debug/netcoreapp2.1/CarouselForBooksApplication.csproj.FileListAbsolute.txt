@@ -38,3 +38,44 @@ D:\teamproject\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\Ca
 D:\teamproject\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Home\Login.cshtml.g.cs
 D:\teamproject\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Home\ChangePassword.cshtml.g.cs
 D:\teamproject\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Home\EditProfile.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\bin\Debug\netcoreapp2.1\appsettings.Development.json
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\bin\Debug\netcoreapp2.1\CarouselForBooksApplication.deps.json
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\bin\Debug\netcoreapp2.1\CarouselForBooksApplication.runtimeconfig.json
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\bin\Debug\netcoreapp2.1\CarouselForBooksApplication.runtimeconfig.dev.json
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\bin\Debug\netcoreapp2.1\CarouselForBooksApplication.dll
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\bin\Debug\netcoreapp2.1\CarouselForBooksApplication.pdb
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\bin\Debug\netcoreapp2.1\CarouselForBooksApplication.Views.dll
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\bin\Debug\netcoreapp2.1\CarouselForBooksApplication.Views.pdb
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.csprojAssemblyReference.cache
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.AssemblyInfoInputs.cache
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.AssemblyInfo.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.csproj.CoreCompileInputs.cache
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.RazorAssemblyInfo.cache
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.RazorAssemblyInfo.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.TagHelpers.input.cache
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.TagHelpers.output.cache
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.RazorCoreGenerate.cache
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.RazorTargetAssemblyInfo.cache
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.RazorTargetAssemblyInfo.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.Views.pdb
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.dll
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.pdb
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.genruntimeconfig.cache
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.csproj.CopyComplete
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Book\Index.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\User\ChangePassword.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\User\Create.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\User\EditProfile.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\User\Login.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\New folder 111\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\User\Index.cshtml.g.cs
