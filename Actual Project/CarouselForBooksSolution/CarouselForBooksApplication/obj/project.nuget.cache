@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GsKfZC7J+RS/isizg5TTmz/+FFO4KJXV2CHyHkuxQmzRZUviqspBOtEa2pjjn0wdku/Qyn432qdHbOx4pRZ1nA==",
+  "dgSpecHash": "fvLiq++3uzJD+PaU97moQ9h5BnIZVeYCeh1KlHJHUpEGBEqEueuCzt/mHWvJL/uN6sdRwXziWUTNeRFcLbe7jg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Afiq\\Documents\\GitHub\\New folder 111\\Dot-Net-Team-1-Project\\Actual Project\\CarouselForBooksSolution\\CarouselForBooksApplication\\CarouselForBooksApplication.csproj",
+  "projectFilePath": "C:\\Users\\Afiq\\Documents\\GitHub\\Dot-Net-Team-1-Project\\Actual Project\\CarouselForBooksSolution\\CarouselForBooksApplication\\CarouselForBooksApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Users\\Afiq\\.nuget\\packages\\microsoft.aspnetcore\\2.1.7\\microsoft.aspnetcore.2.1.7.nupkg.sha512",
