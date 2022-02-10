@@ -14,6 +14,14 @@ namespace CarouselForBooksApplication.Controllers
         {
             return View();
         }
+        public IActionResult Registration()
+        {
+            return View();
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
 
         public IActionResult About()
         {
