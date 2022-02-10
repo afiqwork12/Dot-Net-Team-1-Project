@@ -120,3 +120,4 @@ C:\Users\Afiq\Documents\GitHub\Dot-Net-Team-1-Project\Actual Project\CarouselFor
 C:\Users\Afiq\Documents\GitHub\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.pdb
 C:\Users\Afiq\Documents\GitHub\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.genruntimeconfig.cache
 C:\Users\Afiq\Documents\GitHub\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\CarouselForBooksApplication.csproj.CopyComplete
+C:\Users\Afiq\Documents\GitHub\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp2.1\Razor\Views\Book\Details.cshtml.g.cs
