@@ -11,7 +11,7 @@
     @foreach (var item in Model)
     {
         <div class="col">
-            <div id="divCard" class="card border-dark">
+            <div id="divCard" class="card" style="border:double 3px; padding: 3px; border-radius: 2px;">
                 <img class="card-img-top" src="@Url.Content(item.Picture)" alt="Card image cap" height="350" width="250">
                 <div class="card-body">
                     <h5 class="card-title">@item.Title</h5>
