@@ -1,4 +1,5 @@
 ﻿using CarouselForBooksApplication.Models;
+using CarouselForBooksApplication.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,14 @@ namespace CarouselForBooksApplication.Controllers
 {
     public class HomeController : Controller
     {
+
+        private readonly IRepo<int, User> _repo;
+
+        public HomeController(IRepo<int, User> repo)
+        {
+            _repo = repo;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -46,6 +55,18 @@ namespace CarouselForBooksApplication.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+
+            return View(new User());
+        }
+        [HttpPost]
+        public IActionResult Create(User user)
+        {
+            _repo.Add(user);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -56,7 +56,7 @@ using CarouselForBooksApplication.Models;
             WriteLiteral("<!DOCTYPE html>\r\n\r\n<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\">\r\n");
             EndContext();
             BeginContext(74, 297, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a81455b9c697404498a7eed62b282898", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2c35f45643dc46c69dd88654b089eefb", async() => {
                 BeginContext(80, 284, true);
                 WriteLiteral(@"
     <meta charset=""utf-8"" />
@@ -83,7 +83,7 @@ using CarouselForBooksApplication.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(373, 3934, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "91087b03ab494db9a7c5379c101d03d6", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a8721b979269422baf2bbf93125764b0", async() => {
                 BeginContext(379, 2361, true);
                 WriteLiteral(@"
 
@@ -124,7 +124,7 @@ using CarouselForBooksApplication.Models;
                             ");
                 EndContext();
                 BeginContext(2740, 1420, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7fc13b8c05f04e78bac48ce60b9df4ee", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "24b54b57aa074d15adcdb7fc4d7740bb", async() => {
                     BeginContext(2746, 1407, true);
                     WriteLiteral(@"
 

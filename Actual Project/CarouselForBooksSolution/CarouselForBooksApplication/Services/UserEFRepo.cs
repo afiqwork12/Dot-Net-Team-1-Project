@@ -15,7 +15,9 @@ namespace CarouselForBooksApplication.Services
         }
         public bool Add(User t)
         {
-            throw new NotImplementedException();
+            _context.Users.Add(t);
+            _context.SaveChanges();
+            return true;
         }
 
         public bool Delete(int k)
