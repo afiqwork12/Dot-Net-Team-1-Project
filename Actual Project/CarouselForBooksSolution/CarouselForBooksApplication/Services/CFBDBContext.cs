@@ -19,6 +19,9 @@ namespace CarouselForBooksApplication.Services
         public DbSet<BookGenre> BookGenres { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BookGenre>().HasKey(bg => new { bg.BookId, bg.GenreId });
+            modelBuilder.Entity<Book>().HasMany(book => book.Genres);
+            modelBuilder.Entity<Genre>().HasMany(genre => genre.Books);
             modelBuilder.Entity<User>().HasData(
                 new User()
                 {
@@ -101,7 +104,6 @@ namespace CarouselForBooksApplication.Services
                 new Genre() { Id = 57, Name = "Travel" },
                 new Genre() { Id = 58, Name = "True crime" }
             );
-            modelBuilder.Entity<BookGenre>().HasKey(bg => new { bg.BookId, bg.GenreId });
             modelBuilder.Entity<BookGenre>().HasData(
                 new BookGenre() { BookId = 1, GenreId = 1 }
             );
