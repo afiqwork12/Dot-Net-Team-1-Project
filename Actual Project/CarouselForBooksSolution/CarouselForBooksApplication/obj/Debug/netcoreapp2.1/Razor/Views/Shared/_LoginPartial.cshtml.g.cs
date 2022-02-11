@@ -57,7 +57,7 @@ using CarouselForBooksApplication.Models;
             WriteLiteral("<ul class=\"nav navbar-nav navbar-right\">\r\n    <li>");
             EndContext();
             BeginContext(50, 65, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "36b6dd0a571749ecb55d2d29ae5dd913", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "229a0642b45c48d088b96a1b801ea6c1", async() => {
                 BeginContext(106, 5, true);
                 WriteLiteral("Login");
                 EndContext();
@@ -83,7 +83,7 @@ using CarouselForBooksApplication.Models;
             WriteLiteral("</li>\r\n    <li>");
             EndContext();
             BeginContext(130, 69, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "00d31a47770d4c2887c0b7c52f52fbbf", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c37a197d15634725826cd1227bf5aeec", async() => {
                 BeginContext(187, 8, true);
                 WriteLiteral("Register");
                 EndContext();
