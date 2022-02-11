@@ -33,8 +33,8 @@ namespace CarouselForBooksApplication
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddControllersWithViews(opt => opt.EnableEndpointRouting = false);
+            services.AddMvc();
             services.AddScoped<IRepo<int, User>, UserEFRepo>();
             services.AddScoped<IRepo<int, Book>, BookEFRepo>();
             services.AddDbContext<CFBDBContext>(
