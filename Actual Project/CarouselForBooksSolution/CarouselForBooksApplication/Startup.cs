@@ -40,9 +40,21 @@ namespace CarouselForBooksApplication
             services.AddDbContext<CFBDBContext>(
                 options =>
                 {
-                    options.UseSqlServer(Configuration.GetConnectionString("conn"));
+                    options.UseSqlServer(Configuration.GetConnectionString("afiq"));
                 }
             );
+            //services.AddDbContext<CFBDBContext>(
+            //    options =>
+            //    {
+            //        options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
+            //    }
+            //);
+            //services.AddDbContext<CFBDBContext>(
+            //    options =>
+            //    {
+            //        options.UseSqlServer(Configuration.GetConnectionString("lim"));
+            //    }
+            //);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

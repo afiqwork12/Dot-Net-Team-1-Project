@@ -12,6 +12,7 @@ namespace CarouselForBooksApplication.Controllers
     public class UserController : Controller
     {
         private readonly IRepo<int, User> _repo;
+        private User _currentUser;
         public UserController(IRepo<int, User> repo)
         {
             _repo = repo;
@@ -30,6 +31,24 @@ namespace CarouselForBooksApplication.Controllers
         // GET: UserController
         public ActionResult Login()
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(User user)
+        {
+            var users = _repo.GetAll().ToList();
+            foreach (var item in users)
+            {
+                if (item.Username == user.Username && item.Password == user.Password)
+                {
+                    _currentUser = user;
+                    break;
+                }
+            }
+            if (_currentUser != null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             return View();
         }
         // GET: UserController
