@@ -15,5 +15,6 @@ namespace CarouselForBooksApplication.Models
         public string Name { get; set; }
         public DateTime Dob { get; set; }
         public string Email { get; set; }
+        public string Role { get; set; } = "user"; //user, power user, admin
     }
 }

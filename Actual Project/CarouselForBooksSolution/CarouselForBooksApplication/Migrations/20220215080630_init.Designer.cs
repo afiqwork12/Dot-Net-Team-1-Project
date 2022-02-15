@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarouselForBooksApplication.Migrations
 {
     [DbContext(typeof(CFBDBContext))]
-    [Migration("20220215070241_init")]
+    [Migration("20220215080630_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,11 +29,7 @@ namespace CarouselForBooksApplication.Migrations
 
                     b.Property<double>("Cost");
 
-                    b.Property<DateTime>("DatePosted");
-
                     b.Property<string>("Description");
-
-                    b.Property<bool>("IsSold");
 
                     b.Property<string>("Language");
 
@@ -41,24 +37,20 @@ namespace CarouselForBooksApplication.Migrations
 
                     b.Property<string>("Title");
 
-                    b.Property<int>("UserId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Books");
 
                     b.HasData(
-                        new { Id = 1, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 1", IsSold = false, Language = "English", Picture = "/images/book1.jpg", Title = "Title 1", UserId = 1 },
-                        new { Id = 2, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 2", IsSold = false, Language = "English", Picture = "/images/book2.jfif", Title = "Title 2", UserId = 1 },
-                        new { Id = 3, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 3", IsSold = false, Language = "English", Picture = "/images/book3.jpg", Title = "Title 3", UserId = 1 },
-                        new { Id = 4, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 4", IsSold = false, Language = "English", Picture = "/images/book4.jfif", Title = "Title 4", UserId = 1 },
-                        new { Id = 5, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 5", IsSold = false, Language = "English", Picture = "/images/book5.png", Title = "Title 5", UserId = 1 },
-                        new { Id = 6, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 6", IsSold = false, Language = "English", Picture = "/images/book6.jfif", Title = "Title 6", UserId = 1 },
-                        new { Id = 7, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 7", IsSold = false, Language = "English", Picture = "/images/book7.jpg", Title = "Title 7", UserId = 1 },
-                        new { Id = 8, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 8", IsSold = false, Language = "English", Picture = "/images/book8.jpg", Title = "Title 8", UserId = 1 },
-                        new { Id = 9, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 9", IsSold = false, Language = "English", Picture = "/images/book9.jpg", Title = "Title 9", UserId = 1 }
+                        new { Id = 1, Cost = 22.2, Description = "Description 1", Language = "English", Picture = "/images/book1.jpg", Title = "Title 1" },
+                        new { Id = 2, Cost = 22.2, Description = "Description 2", Language = "English", Picture = "/images/book2.jfif", Title = "Title 2" },
+                        new { Id = 3, Cost = 22.2, Description = "Description 3", Language = "English", Picture = "/images/book3.jpg", Title = "Title 3" },
+                        new { Id = 4, Cost = 22.2, Description = "Description 4", Language = "English", Picture = "/images/book4.jfif", Title = "Title 4" },
+                        new { Id = 5, Cost = 22.2, Description = "Description 5", Language = "English", Picture = "/images/book5.png", Title = "Title 5" },
+                        new { Id = 6, Cost = 22.2, Description = "Description 6", Language = "English", Picture = "/images/book6.jfif", Title = "Title 6" },
+                        new { Id = 7, Cost = 22.2, Description = "Description 7", Language = "English", Picture = "/images/book7.jpg", Title = "Title 7" },
+                        new { Id = 8, Cost = 22.2, Description = "Description 8", Language = "English", Picture = "/images/book8.jpg", Title = "Title 8" },
+                        new { Id = 9, Cost = 22.2, Description = "Description 9", Language = "English", Picture = "/images/book9.jpg", Title = "Title 9" }
                     );
                 });
 
@@ -77,6 +69,21 @@ namespace CarouselForBooksApplication.Migrations
                     b.HasData(
                         new { BookId = 1, GenreId = 1 }
                     );
+                });
+
+            modelBuilder.Entity("CarouselForBooksApplication.Models.Cart", b =>
+                {
+                    b.Property<int>("BookId");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("BookId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("CarouselForBooksApplication.Models.Genre", b =>
@@ -153,6 +160,44 @@ namespace CarouselForBooksApplication.Migrations
                     );
                 });
 
+            modelBuilder.Entity("CarouselForBooksApplication.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateOrdered");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("CarouselForBooksApplication.Models.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BookId");
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItems");
+                });
+
             modelBuilder.Entity("CarouselForBooksApplication.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -167,6 +212,8 @@ namespace CarouselForBooksApplication.Migrations
 
                     b.Property<string>("Password");
 
+                    b.Property<string>("Role");
+
                     b.Property<string>("Username");
 
                     b.HasKey("Id");
@@ -174,16 +221,8 @@ namespace CarouselForBooksApplication.Migrations
                     b.ToTable("Users");
 
                     b.HasData(
-                        new { Id = 1, Dob = new DateTime(2022, 2, 15, 15, 2, 41, 62, DateTimeKind.Local), Email = "john123@gmail.com", Name = "John Wick", Password = "P@ssw0rd123", Username = "john123" }
+                        new { Id = 1, Dob = new DateTime(2022, 2, 15, 16, 6, 30, 45, DateTimeKind.Local), Email = "john123@gmail.com", Name = "John Wick", Password = "P@ssw0rd123", Role = "user", Username = "john123" }
                     );
-                });
-
-            modelBuilder.Entity("CarouselForBooksApplication.Models.Book", b =>
-                {
-                    b.HasOne("CarouselForBooksApplication.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CarouselForBooksApplication.Models.BookGenre", b =>
@@ -196,6 +235,40 @@ namespace CarouselForBooksApplication.Migrations
                     b.HasOne("CarouselForBooksApplication.Models.Genre", "Genre")
                         .WithMany()
                         .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CarouselForBooksApplication.Models.Cart", b =>
+                {
+                    b.HasOne("CarouselForBooksApplication.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CarouselForBooksApplication.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CarouselForBooksApplication.Models.Order", b =>
+                {
+                    b.HasOne("CarouselForBooksApplication.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CarouselForBooksApplication.Models.OrderItem", b =>
+                {
+                    b.HasOne("CarouselForBooksApplication.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CarouselForBooksApplication.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

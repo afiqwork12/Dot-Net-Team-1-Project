@@ -16,11 +16,11 @@ namespace CarouselForBooksApplication.Models
         public string Language { get; set; }
         public double Cost { get; set; }
         public string Picture { get; set; }
-        public bool IsSold { get; set; }
-        public DateTime DatePosted { get; set; }
-        [ForeignKey("UserId")]
-        public User User { get; set; }
-        public int UserId { get; set; }
+        //public bool IsSold { get; set; }
+        //public DateTime DatePosted { get; set; }
+        //[ForeignKey("UserId")]
+        //public User User { get; set; }
+        //public int UserId { get; set; }
         //public ICollection<Genre> Genres { get; set; }
     }
 }
