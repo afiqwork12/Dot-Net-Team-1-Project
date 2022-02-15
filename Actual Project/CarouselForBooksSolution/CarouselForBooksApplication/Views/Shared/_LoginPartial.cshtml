@@ -1,4 +1,23 @@
-﻿<ul class="nav navbar-nav navbar-right">
-    <li><a asp-area="" asp-controller="User" asp-action="Login">Login</a></li>
-    <li><a asp-area="" asp-controller="User" asp-action="Create">Register</a></li>
-</ul>
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@if (@HttpContextAccessor.HttpContext.Session.GetString("un") != null)
+{
+    <form asp-controller="User" asp-action="Logout" method="post" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a asp-area="" asp-controller="User" asp-action="Index">Hello @HttpContextAccessor.HttpContext.Session.GetString("un")!</a>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-area="" asp-controller="User" asp-action="Login">Login</a></li>
+        <li><a asp-area="" asp-controller="User" asp-action="Create">Register</a></li>
+    </ul>
+}

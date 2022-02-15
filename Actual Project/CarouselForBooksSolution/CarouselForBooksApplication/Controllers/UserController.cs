@@ -12,10 +12,12 @@ namespace CarouselForBooksApplication.Controllers
     public class UserController : Controller
     {
         private readonly IRepo<int, User> _repo;
-        private User _currentUser;
-        public UserController(IRepo<int, User> repo)
+        private readonly LoginService _loginService;
+
+        public UserController(IRepo<int, User> repo, LoginService loginService)
         {
             _repo = repo;
+            _loginService = loginService;
         }
 
         // GET: UserController
@@ -36,20 +38,18 @@ namespace CarouselForBooksApplication.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
-            var users = _repo.GetAll().ToList();
-            foreach (var item in users)
+            var repouser = _loginService.LoginCheck(user);
+            if (repouser != null)
             {
-                if (item.Username == user.Username && item.Password == user.Password)
-                {
-                    _currentUser = user;
-                    break;
-                }
-            }
-            if (_currentUser != null)
-            {
-                return RedirectToAction(nameof(Index));
+                HttpContext.Session.SetString("un", user.Username);
+                return RedirectToAction("Index", "Book", new { area = "" });
             }
             return View();
+        }
+        public ActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Book", new { area = "" });
         }
         // GET: UserController
         public ActionResult Index()

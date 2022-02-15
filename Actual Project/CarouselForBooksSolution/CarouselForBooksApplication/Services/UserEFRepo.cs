@@ -32,7 +32,7 @@ namespace CarouselForBooksApplication.Services
 
         public User GetT(int k)
         {
-            throw new NotImplementedException();
+            return _context.Users.SingleOrDefault(u => u.Id == k);
         }
 
         public bool Update(User t)
