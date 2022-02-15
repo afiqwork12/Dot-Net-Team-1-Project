@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarouselForBooksApplication.Migrations
 {
     [DbContext(typeof(CFBDBContext))]
-    [Migration("20220211021447_stuff")]
-    partial class stuff
+    [Migration("20220215070241_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,8 +33,6 @@ namespace CarouselForBooksApplication.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int?>("GenreId");
-
                     b.Property<bool>("IsSold");
 
                     b.Property<string>("Language");
@@ -47,22 +45,20 @@ namespace CarouselForBooksApplication.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GenreId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Books");
 
                     b.HasData(
-                        new { Id = 1, Cost = 22.2, DatePosted = new DateTime(2022, 2, 11, 10, 14, 46, 569, DateTimeKind.Local), Description = "Description 1", IsSold = false, Language = "English", Picture = "/images/book1.jpg", Title = "Title 1", UserId = 1 },
-                        new { Id = 2, Cost = 22.2, DatePosted = new DateTime(2022, 2, 11, 10, 14, 46, 569, DateTimeKind.Local), Description = "Description 2", IsSold = false, Language = "English", Picture = "/images/book2.jfif", Title = "Title 2", UserId = 1 },
-                        new { Id = 3, Cost = 22.2, DatePosted = new DateTime(2022, 2, 11, 10, 14, 46, 569, DateTimeKind.Local), Description = "Description 3", IsSold = false, Language = "English", Picture = "/images/book3.jpg", Title = "Title 3", UserId = 1 },
-                        new { Id = 4, Cost = 22.2, DatePosted = new DateTime(2022, 2, 11, 10, 14, 46, 569, DateTimeKind.Local), Description = "Description 4", IsSold = false, Language = "English", Picture = "/images/book4.jfif", Title = "Title 4", UserId = 1 },
-                        new { Id = 5, Cost = 22.2, DatePosted = new DateTime(2022, 2, 11, 10, 14, 46, 569, DateTimeKind.Local), Description = "Description 5", IsSold = false, Language = "English", Picture = "/images/book5.png", Title = "Title 5", UserId = 1 },
-                        new { Id = 6, Cost = 22.2, DatePosted = new DateTime(2022, 2, 11, 10, 14, 46, 569, DateTimeKind.Local), Description = "Description 6", IsSold = false, Language = "English", Picture = "/images/book6.jfif", Title = "Title 6", UserId = 1 },
-                        new { Id = 7, Cost = 22.2, DatePosted = new DateTime(2022, 2, 11, 10, 14, 46, 569, DateTimeKind.Local), Description = "Description 7", IsSold = false, Language = "English", Picture = "/images/book7.jpg", Title = "Title 7", UserId = 1 },
-                        new { Id = 8, Cost = 22.2, DatePosted = new DateTime(2022, 2, 11, 10, 14, 46, 569, DateTimeKind.Local), Description = "Description 8", IsSold = false, Language = "English", Picture = "/images/book8.jpg", Title = "Title 8", UserId = 1 },
-                        new { Id = 9, Cost = 22.2, DatePosted = new DateTime(2022, 2, 11, 10, 14, 46, 569, DateTimeKind.Local), Description = "Description 9", IsSold = false, Language = "English", Picture = "/images/book9.jpg", Title = "Title 9", UserId = 1 }
+                        new { Id = 1, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 1", IsSold = false, Language = "English", Picture = "/images/book1.jpg", Title = "Title 1", UserId = 1 },
+                        new { Id = 2, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 2", IsSold = false, Language = "English", Picture = "/images/book2.jfif", Title = "Title 2", UserId = 1 },
+                        new { Id = 3, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 3", IsSold = false, Language = "English", Picture = "/images/book3.jpg", Title = "Title 3", UserId = 1 },
+                        new { Id = 4, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 4", IsSold = false, Language = "English", Picture = "/images/book4.jfif", Title = "Title 4", UserId = 1 },
+                        new { Id = 5, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 5", IsSold = false, Language = "English", Picture = "/images/book5.png", Title = "Title 5", UserId = 1 },
+                        new { Id = 6, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 6", IsSold = false, Language = "English", Picture = "/images/book6.jfif", Title = "Title 6", UserId = 1 },
+                        new { Id = 7, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 7", IsSold = false, Language = "English", Picture = "/images/book7.jpg", Title = "Title 7", UserId = 1 },
+                        new { Id = 8, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 8", IsSold = false, Language = "English", Picture = "/images/book8.jpg", Title = "Title 8", UserId = 1 },
+                        new { Id = 9, Cost = 22.2, DatePosted = new DateTime(2022, 2, 15, 15, 2, 41, 74, DateTimeKind.Local), Description = "Description 9", IsSold = false, Language = "English", Picture = "/images/book9.jpg", Title = "Title 9", UserId = 1 }
                     );
                 });
 
@@ -89,13 +85,9 @@ namespace CarouselForBooksApplication.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BookId");
-
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookId");
 
                     b.ToTable("Genres");
 
@@ -182,16 +174,12 @@ namespace CarouselForBooksApplication.Migrations
                     b.ToTable("Users");
 
                     b.HasData(
-                        new { Id = 1, Dob = new DateTime(2022, 2, 11, 10, 14, 46, 567, DateTimeKind.Local), Email = "john123@gmail.com", Name = "John Wick", Password = "P@ssw0rd123", Username = "john123" }
+                        new { Id = 1, Dob = new DateTime(2022, 2, 15, 15, 2, 41, 62, DateTimeKind.Local), Email = "john123@gmail.com", Name = "John Wick", Password = "P@ssw0rd123", Username = "john123" }
                     );
                 });
 
             modelBuilder.Entity("CarouselForBooksApplication.Models.Book", b =>
                 {
-                    b.HasOne("CarouselForBooksApplication.Models.Genre")
-                        .WithMany("Books")
-                        .HasForeignKey("GenreId");
-
                     b.HasOne("CarouselForBooksApplication.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -209,13 +197,6 @@ namespace CarouselForBooksApplication.Migrations
                         .WithMany()
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CarouselForBooksApplication.Models.Genre", b =>
-                {
-                    b.HasOne("CarouselForBooksApplication.Models.Book")
-                        .WithMany("Genres")
-                        .HasForeignKey("BookId");
                 });
 #pragma warning restore 612, 618
         }
