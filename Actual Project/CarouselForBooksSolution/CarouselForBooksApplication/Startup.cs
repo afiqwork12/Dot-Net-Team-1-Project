@@ -37,12 +37,15 @@ namespace CarouselForBooksApplication
             services.AddMvc();
             services.AddScoped<IRepo<int, User>, UserEFRepo>();
             services.AddScoped<IRepo<int, Book>, BookEFRepo>();
+            services.AddScoped<LoginService>();
             services.AddDbContext<CFBDBContext>(
                 options =>
                 {
                     options.UseSqlServer(Configuration.GetConnectionString("afiq"));
                 }
             );
+            services.AddSession();
+            services.AddHttpContextAccessor();
             //services.AddDbContext<CFBDBContext>(
             //    options =>
             //    {
@@ -71,6 +74,8 @@ namespace CarouselForBooksApplication
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
