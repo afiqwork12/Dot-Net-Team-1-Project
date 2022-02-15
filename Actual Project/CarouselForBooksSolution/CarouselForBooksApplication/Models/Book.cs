@@ -21,6 +21,6 @@ namespace CarouselForBooksApplication.Models
         [ForeignKey("UserId")]
         public User User { get; set; }
         public int UserId { get; set; }
-        public ICollection<Genre> Genres { get; set; }
+        //public ICollection<Genre> Genres { get; set; }
     }
 }

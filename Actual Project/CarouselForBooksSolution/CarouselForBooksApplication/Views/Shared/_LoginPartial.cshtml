@@ -6,7 +6,7 @@
     <form asp-controller="User" asp-action="Logout" method="post" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-area="" asp-controller="User" asp-action="Index">Hello @HttpContextAccessor.HttpContext.Session.GetString("un")!</a>
+                <a asp-area="" asp-controller="Book" asp-action="Index">Hello @HttpContextAccessor.HttpContext.Session.GetString("un")!</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>

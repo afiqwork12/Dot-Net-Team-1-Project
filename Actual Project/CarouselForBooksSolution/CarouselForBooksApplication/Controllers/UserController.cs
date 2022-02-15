@@ -74,15 +74,11 @@ namespace CarouselForBooksApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(User user)
         {
-            try
+            if (_repo.Add(user))
             {
-                _repo.Add(user);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Book", new { area = "" });
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         // GET: UserController/Edit/5
