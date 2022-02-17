@@ -30,7 +30,6 @@ namespace CarouselForBooksApplication.Services
             modelBuilder.Entity<User>().HasData(
                 new User()
                 {
-                    Id = 1,
                     Username = "john123",
                     Password = "P@ssw0rd123",
                     Name = "John Wick",

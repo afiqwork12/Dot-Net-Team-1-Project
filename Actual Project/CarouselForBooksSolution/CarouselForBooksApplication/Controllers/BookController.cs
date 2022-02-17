@@ -16,32 +16,42 @@ namespace CarouselForBooksApplication.Controllers
             _repo = repo;
         }
         // GET: BookController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(_repo.GetAll());
+            var books = await _repo.GetAll();
+            return View(books);
         }
 
         // GET: BookController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View(_repo.GetT(id));
+            var book = await _repo.GetT(id);
+            if (book != null)
+            {
+                return View(book);
+            }
+            return NotFound();
         }
 
         // GET: BookController/Create
         public ActionResult Create()
         {
-            return View(new Book());
+            return View();
         }
 
         // POST: BookController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Book book)
+        public async Task<ActionResult> Create(Book book)
         {
             try
             {
-                _repo.Add(book);
-                return RedirectToAction(nameof(Index));
+                book = await _repo.Add(book);
+                if (book != null)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                return View();
             }
             catch
             {
@@ -50,20 +60,29 @@ namespace CarouselForBooksApplication.Controllers
         }
 
         // GET: BookController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View(_repo.GetT(id));
+            var book = await _repo.GetT(id);
+            if (book != null)
+            {
+                return View(book);
+            }
+            return NotFound();
         }
 
         // POST: BookController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Book book)
+        public async Task<ActionResult> Edit(Book book)
         {
             try
             {
-                _repo.Update(book);
-                return RedirectToAction(nameof(Index));
+                book = await _repo.Update(book);
+                if (book != null)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                return View();
             }
             catch
             {
@@ -72,20 +91,29 @@ namespace CarouselForBooksApplication.Controllers
         }
 
         // GET: BookController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View(_repo.GetT(id));
+            var book = await _repo.GetT(id);
+            if (book != null)
+            {
+                return View(book);
+            }
+            return NotFound();
         }
 
         // POST: BookController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Book book)
+        public async Task<ActionResult> Delete(Book book)
         {
             try
             {
-                _repo.Delete(book.Id);
-                return RedirectToAction(nameof(Index));
+                book = await _repo.Delete(book.Id);
+                if (book != null)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                return View();
             }
             catch
             {

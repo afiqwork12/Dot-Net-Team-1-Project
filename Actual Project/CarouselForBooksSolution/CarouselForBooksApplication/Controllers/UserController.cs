@@ -11,13 +11,11 @@ namespace CarouselForBooksApplication.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IRepo<int, User> _repo;
-        private readonly LoginService _loginService;
+        private readonly IUser<string, User> _repo;
 
-        public UserController(IRepo<int, User> repo, LoginService loginService)
+        public UserController(IUser<string, User> repo)
         {
             _repo = repo;
-            _loginService = loginService;
         }
 
         // GET: UserController
@@ -36,9 +34,9 @@ namespace CarouselForBooksApplication.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(User user)
+        public async Task<ActionResult> Login(User user)
         {
-            var repouser = _loginService.LoginCheck(user);
+            var repouser = await _repo.LoginCheck(user);
             if (repouser != null)
             {
                 HttpContext.Session.SetString("un", user.Username);
@@ -52,9 +50,10 @@ namespace CarouselForBooksApplication.Controllers
             return RedirectToAction("Index", "Book", new { area = "" });
         }
         // GET: UserController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(_repo.GetAll());
+            var users = await _repo.GetAll();
+            return View(users);
         }
 
         // GET: UserController/Details/5
@@ -66,15 +65,16 @@ namespace CarouselForBooksApplication.Controllers
         // GET: UserController/Create
         public ActionResult Create()
         {
-            return View(new User());
+            return View();
         }
 
         // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(User user)
+        public async Task<ActionResult> Create(User user)
         {
-            if (_repo.Add(user))
+            user = await _repo.Add(user);
+            if (user != null)
             {
                 return RedirectToAction("Index", "Book", new { area = "" });
             }

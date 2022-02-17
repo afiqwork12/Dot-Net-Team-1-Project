@@ -35,15 +35,15 @@ namespace CarouselForBooksApplication
 
             services.AddControllersWithViews(opt => opt.EnableEndpointRouting = false);
             services.AddMvc();
-            services.AddScoped<IRepo<int, User>, UserEFRepo>();
+            services.AddScoped<IUser<string, User>, UserEFRepo>();
             services.AddScoped<IRepo<int, Book>, BookEFRepo>();
-            services.AddScoped<LoginService>();
-            services.AddDbContext<CFBDBContext>(
-                options =>
-                {
-                    options.UseSqlServer(Configuration.GetConnectionString("afiq"));
-                }
-            );
+            //services.AddScoped<LoginService>();
+            //services.AddDbContext<CFBDBContext>(
+            //    options =>
+            //    {
+            //        options.UseSqlServer(Configuration.GetConnectionString("afiq"));
+            //    }
+            //);
             services.AddSession();
             services.AddHttpContextAccessor();
             //services.AddDbContext<CFBDBContext>(

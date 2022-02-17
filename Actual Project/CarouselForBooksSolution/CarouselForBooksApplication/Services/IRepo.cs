@@ -7,10 +7,10 @@ namespace CarouselForBooksApplication.Services
 {
     public interface IRepo<K, T>
     {
-        bool Add(T t);
-        bool Update(T t);
-        bool Delete(K k);
-        ICollection<T> GetAll();
-        T GetT(K k);
+        Task<T> Add(T t);
+        Task<T> Update(T t);
+        Task<T> Delete(K k);
+        Task<IEnumerable<T>> GetAll();
+        Task<T> GetT(K k);
     }
 }
