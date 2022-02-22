@@ -36,9 +36,10 @@ namespace CarouselForBooksApplication.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(User user)
         {
-            var repouser = await _repo.LoginCheck(user);
-            if (repouser != null)
+            user = await _repo.Login(user);
+            if (user != null)
             {
+                HttpContext.Session.SetString("token", user.Token);
                 HttpContext.Session.SetString("un", user.Username);
                 return RedirectToAction("Index", "Book", new { area = "" });
             }
@@ -52,8 +53,7 @@ namespace CarouselForBooksApplication.Controllers
         // GET: UserController
         public async Task<ActionResult> Index()
         {
-            var users = await _repo.GetAll();
-            return View(users);
+            return View();
         }
 
         // GET: UserController/Details/5
@@ -73,9 +73,12 @@ namespace CarouselForBooksApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(User user)
         {
+            user.Role = "user";
             user = await _repo.Add(user);
             if (user != null)
             {
+                HttpContext.Session.SetString("token", user.Token);
+                HttpContext.Session.SetString("un", user.Username);
                 return RedirectToAction("Index", "Book", new { area = "" });
             }
             return View();

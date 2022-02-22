@@ -34,8 +34,8 @@ namespace CarouselForBooksAPI
 
             services.AddControllers();
             services.AddScoped<IGenerateToken<UserDTO>, GenerateToken>();
-            services.AddScoped<IRepo<string, User>, UserEFRepo>();
-            services.AddScoped<IRepo<int, Book>, BookEFRepo>();
+            services.AddScoped<IManageUser<string, UserDTO>, ManageUser>();
+            services.AddScoped<IBook<int, Book, string>, BookRepo>();
             //services.AddScoped<LoginService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(otps =>
@@ -48,25 +48,13 @@ namespace CarouselForBooksAPI
                     ValidateAudience = false
                 };
             });
-
             services.AddDbContext<CFBDBContext>(
                 options =>
                 {
-                    options.UseSqlServer(Configuration.GetConnectionString("afiq"));
+                    options.UseSqlServer(Configuration.GetConnectionString("conn"));
                 }
             );
-            //services.AddDbContext<CFBDBContext>(
-            //    options =>
-            //    {
-            //        options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
-            //    }
-            //);
-            //services.AddDbContext<CFBDBContext>(
-            //    options =>
-            //    {
-            //        options.UseSqlServer(Configuration.GetConnectionString("lim"));
-            //    }
-            //);
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +63,9 @@ namespace CarouselForBooksAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
+
             }
 
             app.UseRouting();

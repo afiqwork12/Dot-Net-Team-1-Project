@@ -1,5 +1,6 @@
 ﻿using CarouselForBooksApplication.Models;
 using CarouselForBooksApplication.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,19 +19,31 @@ namespace CarouselForBooksApplication.Controllers
         // GET: BookController
         public async Task<ActionResult> Index()
         {
-            var books = await _repo.GetAll();
-            return View(books);
+            if (HttpContext.Session.GetString("token") != null)
+            {
+                string token = HttpContext.Session.GetString("token");
+                _repo.GetToken(token);
+                var books = await _repo.GetAll();
+                return View(books);
+            }
+            return RedirectToAction("Login", "User", new { area = "" });
         }
 
         // GET: BookController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var book = await _repo.GetT(id);
-            if (book != null)
+            if (HttpContext.Session.GetString("token") != null)
             {
-                return View(book);
+                string token = HttpContext.Session.GetString("token");
+                _repo.GetToken(token);
+                var book = await _repo.GetT(id);
+                if (book != null)
+                {
+                    return View(book);
+                }
+                return NotFound();
             }
-            return NotFound();
+            return RedirectToAction("Login", "User", new { area = "" });
         }
 
         // GET: BookController/Create
@@ -62,12 +75,18 @@ namespace CarouselForBooksApplication.Controllers
         // GET: BookController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var book = await _repo.GetT(id);
-            if (book != null)
+            if (HttpContext.Session.GetString("token") != null)
             {
-                return View(book);
+                string token = HttpContext.Session.GetString("token");
+                _repo.GetToken(token);
+                var book = await _repo.GetT(id);
+                if (book != null)
+                {
+                    return View(book);
+                }
+                return NotFound();
             }
-            return NotFound();
+            return RedirectToAction("Login", "User", new { area = "" });
         }
 
         // POST: BookController/Edit/5

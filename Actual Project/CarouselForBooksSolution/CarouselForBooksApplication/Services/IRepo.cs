@@ -7,6 +7,7 @@ namespace CarouselForBooksApplication.Services
 {
     public interface IRepo<K, T>
     {
+        void GetToken(string token);
         Task<T> Add(T t);
         Task<T> Update(T t);
         Task<T> Delete(K k);

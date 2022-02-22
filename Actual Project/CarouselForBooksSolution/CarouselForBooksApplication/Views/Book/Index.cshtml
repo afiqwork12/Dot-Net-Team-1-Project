@@ -14,8 +14,8 @@
             <div id="divCard" class="card" style="border:double 3px; padding: 3px; border-radius: 2px;">
                 <img class="card-img-top" src="@Url.Content(item.Picture)" alt="Card image cap" height="350" width="250">
                 <div class="card-body">
-                    <h5 class="card-title">@item.Title</h5>
-                    <p class="card-text">@item.Description</p>
+                    <h5 class="card-title"><b>@item.Title</b></h5>
+                    @*<p class="card-text">@item.Description</p>*@
                     <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Add To Cart</a> |
                     <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">View Details</a>
                     @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@

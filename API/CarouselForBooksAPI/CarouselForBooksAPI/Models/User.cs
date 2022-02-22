@@ -10,11 +10,11 @@ namespace CarouselForBooksAPI.Models
     {
         [Key]
         public string Username { get; set; }
-        public string Password { get; set; }
+        public byte[] Password { get; set; }
+        public byte[] PasswordHash { get; set; }
         public string Name { get; set; }
         public DateTime Dob { get; set; }
         public string Email { get; set; }
-        public string Role { get; set; } = "user"; //user, power user, admin
-
+        public string Role { get; set; } //user, power user, admin
     }
 }

@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 
 namespace CarouselForBooksApplication.Services
 {
-    public interface IUser<K, T> : IRepo<K, T>
+    public interface IUser<K, T> 
     {
-        Task<T> LoginCheck(T t);
+        Task<T> Get(K key);
+        Task<T> Add(T user);
+        Task<T> Update(T user);
+        Task<T> Login(T user);
     }
 }

@@ -17,12 +17,5 @@ namespace BookAPI.Models
         public string Language { get; set; }
         public double Cost { get; set; }
         public string Picture { get; set; }
-        //public IEnumerable<BookGenre> BookGenres { get; set; }
-        //[NotMapped]
-        //public IEnumerable<Genre> Genres { get; set; }
-        //public string GetSearchTerms(List<string> genre)
-        //{
-        //    return Title + "," + Description + "," + Language + "," + string.Join("," + genre);
-        //}
     }
 }

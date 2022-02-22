@@ -33,42 +33,7 @@ namespace CarouselForBooksApplication.Services
             }
             return null;
         }
-
-        public async Task<User> Delete(string k)
-        {
-            using (_httpClient)
-            {
-                using (var response = await _httpClient.DeleteAsync("http://localhost:50451/api/users/" + k))
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string responseText = await response.Content.ReadAsStringAsync();
-                        var user = JsonConvert.DeserializeObject<User>(responseText);
-                        return user;
-                    }
-                }
-            }
-            return null;
-        }
-
-        public async Task<IEnumerable<User>> GetAll()
-        {
-            using (_httpClient)
-            {
-                using (var response = await _httpClient.GetAsync("http://localhost:50451/api/users"))
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string responseText = await response.Content.ReadAsStringAsync();
-                        var users = JsonConvert.DeserializeObject<IEnumerable<User>>(responseText);
-                        return users;
-                    }
-                }
-            }
-            return null;
-        }
-
-        public async Task<User> GetT(string k)
+        public async Task<User> Get(string k)
         {
             using (_httpClient)
             {
@@ -84,12 +49,12 @@ namespace CarouselForBooksApplication.Services
             }
             return null;
         }
-        public async Task<User> LoginCheck(User user)
+        public async Task<User> Login(User user)
         {
             using (_httpClient)
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
-                using (var response = await _httpClient.PostAsync("http://localhost:50451/api/users/logincheck/" + user.Username, content))
+                using (var response = await _httpClient.PostAsync("http://localhost:50451/api/users/Login/", content))
                 {
                     if (response.IsSuccessStatusCode)
                     {

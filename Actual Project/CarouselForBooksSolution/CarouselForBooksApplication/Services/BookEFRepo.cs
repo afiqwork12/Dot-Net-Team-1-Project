@@ -6,15 +6,23 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Text;
+using System.Net.Http.Headers;
 
 namespace CarouselForBooksApplication.Services
 {
     public class BookEFRepo : IRepo<int, Book>
     {
         private readonly HttpClient _httpClient;
+        private string _token;
         public BookEFRepo()
         {
             _httpClient = new HttpClient();
+        }
+        public void GetToken(string token)
+        {
+            _token = token;
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
         }
         public async Task<Book> Add(Book t)
         {
