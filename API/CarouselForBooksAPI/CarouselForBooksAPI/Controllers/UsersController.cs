@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CarouselForBooksAPI.Models;
 using CarouselForBooksAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,6 +13,7 @@ namespace CarouselForBooksAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IRepo<string, User> _repo;

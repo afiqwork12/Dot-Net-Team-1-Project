@@ -12,11 +12,15 @@ using System.Threading.Tasks;
 using CarouselForBooksAPI.Models;
 using CarouselForBooksAPI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace CarouselForBooksAPI
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,10 +31,24 @@ namespace CarouselForBooksAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers();
+            services.AddScoped<IGenerateToken<UserDTO>, GenerateToken>();
             services.AddScoped<IRepo<string, User>, UserEFRepo>();
             services.AddScoped<IRepo<int, Book>, BookEFRepo>();
             //services.AddScoped<LoginService>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(otps =>
+            {
+                otps.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
+                    ValidateIssuerSigningKey = true,
+                    ValidateAudience = false
+                };
+            });
+
             services.AddDbContext<CFBDBContext>(
                 options =>
                 {
@@ -60,7 +78,7 @@ namespace CarouselForBooksAPI
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

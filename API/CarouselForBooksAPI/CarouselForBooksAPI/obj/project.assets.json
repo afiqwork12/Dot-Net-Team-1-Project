@@ -75,6 +75,21 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Core.dll": {}
         }
       },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.5.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.Authorization/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -3502,6 +3517,20 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Core.xml",
         "microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
         "microsoft.aspnetcore.authentication.core.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.1": {
+      "sha512": "m7uchb4whAlqpvdARfjmUJtdHLvmVwxiy7dcEYp3OqSP7OXUK7vL4m99YRAEFZYtzq+WQgCn7Yk1Mb5xqBtXEQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/3.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
+        "microsoft.aspnetcore.authentication.jwtbearer.3.1.1.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authorization/2.2.0": {
@@ -10095,31 +10124,30 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.AspNetCore >= 2.2.0",
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.1",
       "Microsoft.AspNetCore.Mvc >= 2.2.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.22",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.22"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Afiq\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\phoeb\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Afiq\\Documents\\GitHub\\Team-1-15feb2022\\Dot-Net-Team-1-Project\\API\\CarouselForBooksAPI\\CarouselForBooksAPI\\CarouselForBooksAPI.csproj",
+      "projectUniqueName": "C:\\Users\\phoeb\\Desktop\\New folder\\Dot-Net-Team-1-Project\\API\\CarouselForBooksAPI\\CarouselForBooksAPI\\CarouselForBooksAPI.csproj",
       "projectName": "CarouselForBooksAPI",
-      "projectPath": "C:\\Users\\Afiq\\Documents\\GitHub\\Team-1-15feb2022\\Dot-Net-Team-1-Project\\API\\CarouselForBooksAPI\\CarouselForBooksAPI\\CarouselForBooksAPI.csproj",
-      "packagesPath": "C:\\Users\\Afiq\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Afiq\\Documents\\GitHub\\Team-1-15feb2022\\Dot-Net-Team-1-Project\\API\\CarouselForBooksAPI\\CarouselForBooksAPI\\obj\\",
+      "projectPath": "C:\\Users\\phoeb\\Desktop\\New folder\\Dot-Net-Team-1-Project\\API\\CarouselForBooksAPI\\CarouselForBooksAPI\\CarouselForBooksAPI.csproj",
+      "packagesPath": "C:\\Users\\phoeb\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\phoeb\\Desktop\\New folder\\Dot-Net-Team-1-Project\\API\\CarouselForBooksAPI\\CarouselForBooksAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Afiq\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\phoeb\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -10149,6 +10177,10 @@
           "Microsoft.AspNetCore": {
             "target": "Package",
             "version": "[2.2.0, )"
+          },
+          "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "target": "Package",
+            "version": "[3.1.1, )"
           },
           "Microsoft.AspNetCore.Mvc": {
             "target": "Package",
@@ -10183,7 +10215,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
