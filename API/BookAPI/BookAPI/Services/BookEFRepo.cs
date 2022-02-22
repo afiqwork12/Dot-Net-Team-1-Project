@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookAPI.Services
 {
-    public class BookEFRepo : IRepo<int, Book, string>
+    public class BookEFRepo : IBook<int, Book, string>
     {
         private readonly BookAPIContext _context;
         public BookEFRepo(BookAPIContext context)

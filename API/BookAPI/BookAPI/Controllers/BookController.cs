@@ -14,8 +14,8 @@ namespace BookAPI.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly IRepo<int, Book, string> _repo;
-        public BookController(IRepo<int, Book, string> repo)
+        private readonly IBook<int, Book, string> _repo;
+        public BookController(IBook<int, Book, string> repo)
         {
             _repo = repo;
         }

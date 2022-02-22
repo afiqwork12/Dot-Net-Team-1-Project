@@ -29,8 +29,7 @@ namespace BookAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<IRepo<int, Book, string>, BookEFRepo>();
-            services.AddScoped<IRepo<int, Genre, string>, GenreEFRepo>();
+            services.AddScoped<IBook<int, Book, string>, BookEFRepo>();
             services.AddDbContext<BookAPIContext>(
                 options =>
                 {
