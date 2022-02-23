@@ -41,12 +41,14 @@ namespace BookAPI.Migrations
                 name: "BookGenres",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     BookId = table.Column<int>(nullable: false),
                     GenreId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookGenres", x => new { x.BookId, x.GenreId });
+                    table.PrimaryKey("PK_BookGenres", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BookGenres_Books_BookId",
                         column: x => x.BookId,
@@ -156,19 +158,24 @@ namespace BookAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "BookGenres",
-                columns: new[] { "BookId", "GenreId" },
+                columns: new[] { "Id", "BookId", "GenreId" },
                 values: new object[,]
                 {
-                    { 1, 1 },
-                    { 2, 2 },
-                    { 3, 3 },
-                    { 4, 4 },
-                    { 5, 5 },
-                    { 6, 6 },
-                    { 7, 7 },
-                    { 8, 9 },
-                    { 9, 9 }
+                    { 1, 1, 1 },
+                    { 2, 2, 2 },
+                    { 3, 3, 3 },
+                    { 4, 4, 4 },
+                    { 5, 5, 5 },
+                    { 6, 6, 6 },
+                    { 7, 7, 7 },
+                    { 8, 8, 9 },
+                    { 9, 9, 9 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookGenres_BookId",
+                table: "BookGenres",
+                column: "BookId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BookGenres_GenreId",

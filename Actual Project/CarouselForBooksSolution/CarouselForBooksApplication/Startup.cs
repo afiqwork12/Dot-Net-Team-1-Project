@@ -36,7 +36,9 @@ namespace CarouselForBooksApplication
             services.AddControllersWithViews(opt => opt.EnableEndpointRouting = false);
             services.AddMvc();
             services.AddScoped<IUser<string, User>, UserEFRepo>();
-            services.AddScoped<IRepo<int, Book>, BookEFRepo>();
+            services.AddScoped<IBook<int, Book, string>, BookEFRepo>();
+            services.AddScoped<IRepo<int, BookGenre>, BookGenreRepo>();
+            services.AddScoped<IRepo<int, Genre>, GenreRepo>();
             //services.AddScoped<LoginService>();
             //services.AddDbContext<CFBDBContext>(
             //    options =>

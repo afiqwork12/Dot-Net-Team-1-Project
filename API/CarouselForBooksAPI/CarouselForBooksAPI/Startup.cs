@@ -35,6 +35,8 @@ namespace CarouselForBooksAPI
             services.AddControllers();
             services.AddScoped<IGenerateToken<UserDTO>, GenerateToken>();
             services.AddScoped<IManageUser<string, UserDTO>, ManageUser>();
+            services.AddScoped<IRepo<int, BookGenre>, BookGenreRepo>();
+            services.AddScoped<IRepo<int, Genre>, GenreRepo>();
             services.AddScoped<IBook<int, Book, string>, BookRepo>();
             //services.AddScoped<LoginService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -51,9 +53,21 @@ namespace CarouselForBooksAPI
             services.AddDbContext<CFBDBContext>(
                 options =>
                 {
-                    options.UseSqlServer(Configuration.GetConnectionString("conn"));
+                    options.UseSqlServer(Configuration.GetConnectionString("afiq"));
                 }
             );
+            //services.AddDbContext<CFBDBContext>(
+            //    options =>
+            //    {
+            //        options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
+            //    }
+            //);
+            //services.AddDbContext<CFBDBContext>(
+            //    options =>
+            //    {
+            //        options.UseSqlServer(Configuration.GetConnectionString("lim"));
+            //    }
+            //);
             services.AddSwaggerGen();
         }
 

@@ -24,7 +24,7 @@ namespace CarouselForBooksApplication.Services
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BookGenre>().HasKey(bg => new { bg.BookId, bg.GenreId });
-            modelBuilder.Entity<Cart>().HasKey(c => new { c.BookId, c.UserId });
+            modelBuilder.Entity<Cart>().HasKey(c => new { c.BookId, c.Username });
             //modelBuilder.Entity<Book>().HasMany(book => book.Genres);
             //modelBuilder.Entity<Genre>().HasMany(genre => genre.Books);
             modelBuilder.Entity<User>().HasData(

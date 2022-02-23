@@ -154,13 +154,20 @@ E. B. White's Newbery Honor Book is a tender novel of friendship, love, life, an
 
             modelBuilder.Entity("BookAPI.Models.BookGenre", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
-                    b.HasKey("BookId", "GenreId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
 
                     b.HasIndex("GenreId");
 
@@ -169,46 +176,55 @@ E. B. White's Newbery Honor Book is a tender novel of friendship, love, life, an
                     b.HasData(
                         new
                         {
+                            Id = 1,
                             BookId = 1,
                             GenreId = 1
                         },
                         new
                         {
+                            Id = 2,
                             BookId = 2,
                             GenreId = 2
                         },
                         new
                         {
+                            Id = 3,
                             BookId = 3,
                             GenreId = 3
                         },
                         new
                         {
+                            Id = 4,
                             BookId = 4,
                             GenreId = 4
                         },
                         new
                         {
+                            Id = 5,
                             BookId = 5,
                             GenreId = 5
                         },
                         new
                         {
+                            Id = 6,
                             BookId = 6,
                             GenreId = 6
                         },
                         new
                         {
+                            Id = 7,
                             BookId = 7,
                             GenreId = 7
                         },
                         new
                         {
+                            Id = 8,
                             BookId = 8,
                             GenreId = 9
                         },
                         new
                         {
+                            Id = 9,
                             BookId = 9,
                             GenreId = 9
                         });

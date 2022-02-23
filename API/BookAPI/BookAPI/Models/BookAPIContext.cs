@@ -15,12 +15,8 @@ namespace BookAPI.Models
         public DbSet<Book> Books { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<BookGenre> BookGenres { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Book>().HasMany(b => b.BookGenres);
-            //modelBuilder.Entity<Genre>().HasMany(g => g.BookGenres);
-            modelBuilder.Entity<BookGenre>().HasKey(bg => new { bg.BookId, bg.GenreId });
             modelBuilder.Entity<Book>().HasData(
                 new Book() { Id = 1, Title = "Sin Eater", Author = "Megan Campisi", Description = "For the crime of stealing bread, fourteen-year-old May receives a life sentence: she must become a Sin Eater—a shunned woman, brutally marked, whose fate is to hear the final confessions of the dying, eat ritual foods symbolizing their sins as a funeral rite, and thereby shoulder their transgressions to grant their souls access to heaven.\nOrphaned and friendless, apprenticed to an older Sin Eater who cannot speak to her, May must make her way in a dangerous and cruel world she barely understands. When a deer heart appears on the coffin of a royal governess who did not confess to the dreadful sin it represents, the older Sin Eater refuses to eat it. She is taken to prison, tortured, and killed. To avenge her death, May must find out who placed the deer heart on the coffin and why.", Language = "English", Cost = 22.2, Picture = "/images/book1.jpg" },
                 new Book() { Id = 2, Title = "Agnes at the End of the World", Author = "Kelly McWilliams", Description = "Agnes loves her home of Red Creek--its quiet, sunny mornings, its dusty roads, and its God. There, she cares tirelessly for her younger siblings and follows the town's strict laws. What she doesn't know is that Red Creek is a cult, controlled by a madman who calls himself a prophet.\nThen Agnes meets Danny, an Outsider boy, and begins to question what is and isn't a sin. Her younger brother, Ezekiel, will die without the insulin she barters for once a month, even though medicine is considered outlawed. Is she a sinner for saving him? Is her sister, Beth, a sinner for dreaming of the world beyond Red Creek?\nAs the Prophet grows more dangerous, Agnes realizes she must escape with Ezekiel and leave everyone else, including Beth, behind. But it isn't safe Outside, either: A viral pandemic is burning through the population at a terrifying rate. As Agnes ventures forth, a mysterious connection grows between her and the Virus. But in a world where faith, miracles, and cruelty have long been indistinguishable, will Agnes be able to choose between saving her family and saving the world?", Language = "English", Cost = 22.2, Picture = "/images/book2.jfif" },
@@ -93,15 +89,15 @@ namespace BookAPI.Models
                 new Genre() { Id = 58, Name = "True crime" }
             );
             modelBuilder.Entity<BookGenre>().HasData(
-                new BookGenre() { BookId = 1, GenreId = 1 },
-                new BookGenre() { BookId = 2, GenreId = 2 },
-                new BookGenre() { BookId = 3, GenreId = 3 },
-                new BookGenre() { BookId = 4, GenreId = 4 },
-                new BookGenre() { BookId = 5, GenreId = 5 },
-                new BookGenre() { BookId = 6, GenreId = 6 },
-                new BookGenre() { BookId = 7, GenreId = 7 },
-                new BookGenre() { BookId = 8, GenreId = 9 },
-                new BookGenre() { BookId = 9, GenreId = 9 }
+                new BookGenre() { Id = 1, BookId = 1, GenreId = 1 },
+                new BookGenre() { Id = 2, BookId = 2, GenreId = 2 },
+                new BookGenre() { Id = 3, BookId = 3, GenreId = 3 },
+                new BookGenre() { Id = 4, BookId = 4, GenreId = 4 },
+                new BookGenre() { Id = 5, BookId = 5, GenreId = 5 },
+                new BookGenre() { Id = 6, BookId = 6, GenreId = 6 },
+                new BookGenre() { Id = 7, BookId = 7, GenreId = 7 },
+                new BookGenre() { Id = 8, BookId = 8, GenreId = 9 },
+                new BookGenre() { Id = 9, BookId = 9, GenreId = 9 }
             );
             base.OnModelCreating(modelBuilder);
         }

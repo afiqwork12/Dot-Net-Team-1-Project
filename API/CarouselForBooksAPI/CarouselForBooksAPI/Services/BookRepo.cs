@@ -22,7 +22,7 @@ namespace CarouselForBooksAPI.Services
             using (_httpClient)
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-                using (var response = await _httpClient.PostAsync("https://localhost:44332/api/book", content))
+                using (var response = await _httpClient.PostAsync("https://localhost:44332/api/book/", content))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -39,7 +39,7 @@ namespace CarouselForBooksAPI.Services
         {
             using (_httpClient)
             {
-                using (var response = await _httpClient.DeleteAsync("https://localhost:44332/api/book" + key))
+                using (var response = await _httpClient.DeleteAsync("https://localhost:44332/api/book/" + key))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -125,7 +125,7 @@ namespace CarouselForBooksAPI.Services
             using (_httpClient)
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-                using (var response = await _httpClient.PutAsync("https://localhost:44332/api/book", content))
+                using (var response = await _httpClient.PutAsync("https://localhost:44332/api/book/", content))
                 {
                     if (response.IsSuccessStatusCode)
                     {

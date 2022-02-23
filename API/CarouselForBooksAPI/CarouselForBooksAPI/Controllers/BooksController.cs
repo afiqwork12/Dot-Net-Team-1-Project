@@ -80,8 +80,8 @@ namespace CarouselForBooksAPI.Controllers
         }
 
         // PUT api/<BooksController>/5
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, Book book)
+        [HttpPut]
+        public async Task<ActionResult> Put(Book book)
         {
             book = await _repo.Update(book);
             if (book != null)

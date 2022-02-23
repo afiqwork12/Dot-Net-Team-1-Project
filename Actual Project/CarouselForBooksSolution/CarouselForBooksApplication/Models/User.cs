@@ -9,13 +9,15 @@ namespace CarouselForBooksApplication.Models
     public class User
     {
         [Key]
-        [Required(ErrorMessage = "Password is required.")]
+        [Required(ErrorMessage = "Username is required.")]
         public string Username { get; set; }
         [Required(ErrorMessage = "Password is required.")]
+        //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8}$", ErrorMessage = "Password must meet requirements")]
         public string Password { get; set; }
         [Required(ErrorMessage = "Re-Type Password is required.")]
         [Compare(nameof(Password), ErrorMessage = "Passwords don't match.")]
         [Display(Name = "Re-Type Password")]
+        //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8}$", ErrorMessage = "Password must meet requirements")]
         public string ConfirmPassword { get; set; }
         public string Token { get; set; }
         [Required(ErrorMessage = "Name is required.")]
@@ -26,6 +28,7 @@ namespace CarouselForBooksApplication.Models
         public DateTime Dob { get; set; }
         [Required(ErrorMessage = "Email Address is required.")]
         [Display(Name = "Email Address")]
+        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", ErrorMessage = "Invalid email format.")]
         public string Email { get; set; }
         public string Role { get; set; } //user, power user, admin
     }

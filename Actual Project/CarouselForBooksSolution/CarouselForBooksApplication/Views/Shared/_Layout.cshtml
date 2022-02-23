@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -32,7 +34,15 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Book" asp-action="Index">Home</a></li>
                     @*<li><a asp-area="" asp-controller="Home" asp-action="Create">Registration</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
+
+                    @if (@HttpContextAccessor.HttpContext.Session.GetString("role") != null)
+                    {
+                        if (@HttpContextAccessor.HttpContext.Session.GetString("role") == "admin")
+                        {
+                            <li><a asp-area="" asp-controller="Book" asp-action="Create">Add Book</a></li>
+                        }
+                    }
                 </ul>
                 <partial name="_LoginPartial" />
             </div>

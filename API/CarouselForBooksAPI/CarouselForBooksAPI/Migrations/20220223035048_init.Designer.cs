@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarouselForBooksAPI.Migrations
 {
     [DbContext(typeof(CFBDBContext))]
-    [Migration("20220222071957_init")]
+    [Migration("20220223035048_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

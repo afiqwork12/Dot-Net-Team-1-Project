@@ -39,12 +39,19 @@ namespace CarouselForBooksApplication.Controllers
             user = await _repo.Login(user);
             if (user != null)
             {
-                HttpContext.Session.SetString("token", user.Token);
-                HttpContext.Session.SetString("un", user.Username);
+                SetSessionVariables(user);
                 return RedirectToAction("Index", "Book", new { area = "" });
             }
             return View();
         }
+
+        private void SetSessionVariables(User user)
+        {
+            HttpContext.Session.SetString("token", user.Token);
+            HttpContext.Session.SetString("un", user.Username);
+            HttpContext.Session.SetString("role", user.Role);
+        }
+
         public ActionResult Logout()
         {
             HttpContext.Session.Clear();
@@ -77,8 +84,27 @@ namespace CarouselForBooksApplication.Controllers
             user = await _repo.Add(user);
             if (user != null)
             {
-                HttpContext.Session.SetString("token", user.Token);
-                HttpContext.Session.SetString("un", user.Username);
+                SetSessionVariables(user);
+                return RedirectToAction("Index", "Book", new { area = "" });
+            }
+            return View();
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        // POST: UserController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(User user)
+        {
+            user.Role = "user";
+            user = await _repo.Add(user);
+            if (user != null)
+            {
+                SetSessionVariables(user);
                 return RedirectToAction("Index", "Book", new { area = "" });
             }
             return View();

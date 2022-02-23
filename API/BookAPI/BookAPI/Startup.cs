@@ -33,9 +33,21 @@ namespace BookAPI
             services.AddDbContext<BookAPIContext>(
                 options =>
                 {
-                    options.UseSqlServer(Configuration.GetConnectionString("conn"));
+                    options.UseSqlServer(Configuration.GetConnectionString("afiq"));
                 }
             );
+            //services.AddDbContext<BookAPIContext>(
+            //    options =>
+            //    {
+            //        options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
+            //    }
+            //);
+            //services.AddDbContext<BookAPIContext>(
+            //    options =>
+            //    {
+            //        options.UseSqlServer(Configuration.GetConnectionString("lim"));
+            //    }
+            //);
             services.AddSwaggerGen();
         }
 

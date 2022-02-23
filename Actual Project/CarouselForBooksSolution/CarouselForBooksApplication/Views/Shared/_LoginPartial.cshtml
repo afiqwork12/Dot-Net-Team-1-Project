@@ -5,6 +5,9 @@
 {
     <form asp-controller="User" asp-action="Logout" method="post" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
+            @*<li>
+                <a asp-area="" asp-controller="Cart" asp-action="Index">Hello @HttpContextAccessor.HttpContext.Session.GetString("cartitems")</a>
+            </li>*@
             <li>
                 <a asp-area="" asp-controller="Book" asp-action="Index">Hello @HttpContextAccessor.HttpContext.Session.GetString("un")!</a>
             </li>

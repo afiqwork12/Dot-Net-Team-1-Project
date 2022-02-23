@@ -10,7 +10,7 @@ using System.Net.Http.Headers;
 
 namespace CarouselForBooksApplication.Services
 {
-    public class BookEFRepo : IRepo<int, Book>
+    public class BookEFRepo : IBook<int, Book, string>
     {
         private readonly HttpClient _httpClient;
         private string _token;
@@ -98,13 +98,47 @@ namespace CarouselForBooksApplication.Services
             using (_httpClient)
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(t), Encoding.UTF8, "application/json");
-                using (var response = await _httpClient.PutAsync("http://localhost:50451/api/Books" + t.Id, content))
+                using (var response = await _httpClient.PutAsync("http://localhost:50451/api/Books", content))
                 {
                     if (response.IsSuccessStatusCode)
                     {
                         string responseText = await response.Content.ReadAsStringAsync();
                         var book = JsonConvert.DeserializeObject<Book>(responseText);
                         return book;
+                    }
+                }
+            }
+            return null;
+        }
+
+        public async Task<IEnumerable<Book>> Search(string query)
+        {
+            using (_httpClient)
+            {
+                using (var response = await _httpClient.GetAsync("http://localhost:50451/api/Books/Search/" + query))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseText = await response.Content.ReadAsStringAsync();
+                        var books = JsonConvert.DeserializeObject<IEnumerable<Book>>(responseText);
+                        return books;
+                    }
+                }
+            }
+            return null;
+        }
+
+        public async Task<IEnumerable<Book>> Filter(string query)
+        {
+            using (_httpClient)
+            {
+                using (var response = await _httpClient.GetAsync("http://localhost:50451/api/Books/Filter/" + query))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseText = await response.Content.ReadAsStringAsync();
+                        var books = JsonConvert.DeserializeObject<IEnumerable<Book>>(responseText);
+                        return books;
                     }
                 }
             }

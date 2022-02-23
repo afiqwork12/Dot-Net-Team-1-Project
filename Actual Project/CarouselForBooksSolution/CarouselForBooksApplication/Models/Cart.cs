@@ -12,9 +12,9 @@ namespace CarouselForBooksApplication.Models
         [ForeignKey("BookId")]
         public Book Book { get; set; }
         public int BookId { get; set; }
-        [ForeignKey("UserId")]
+        [ForeignKey("Username")]
         public User User { get; set; }
-        public int UserId { get; set; }
+        public string Username { get; set; }
         public int Quantity { get; set; }
 
     }

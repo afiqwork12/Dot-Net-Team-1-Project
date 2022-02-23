@@ -47,7 +47,7 @@ namespace BookAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBookGenre(int id, BookGenre bookGenre)
         {
-            if (id != bookGenre.BookId)
+            if (id != bookGenre.Id)
             {
                 return BadRequest();
             }
@@ -80,23 +80,9 @@ namespace BookAPI.Controllers
         public async Task<ActionResult<BookGenre>> PostBookGenre(BookGenre bookGenre)
         {
             _context.BookGenres.Add(bookGenre);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (BookGenreExists(bookGenre.BookId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBookGenre", new { id = bookGenre.BookId }, bookGenre);
+            return CreatedAtAction("GetBookGenre", new { id = bookGenre.Id }, bookGenre);
         }
 
         // DELETE: api/BookGenre/5
@@ -117,7 +103,7 @@ namespace BookAPI.Controllers
 
         private bool BookGenreExists(int id)
         {
-            return _context.BookGenres.Any(e => e.BookId == id);
+            return _context.BookGenres.Any(e => e.Id == id);
         }
     }
 }
