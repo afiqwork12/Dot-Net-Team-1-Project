@@ -37,6 +37,7 @@ namespace CarouselForBooksApplication
             services.AddMvc();
             services.AddScoped<IUser<string, User>, UserEFRepo>();
             services.AddScoped<IBook<int, Book, string>, BookEFRepo>();
+            services.AddScoped<ICart<int, Cart, string>, CartRepo>();
             services.AddScoped<IRepo<int, BookGenre>, BookGenreRepo>();
             services.AddScoped<IRepo<int, Genre>, GenreRepo>();
             //services.AddScoped<LoginService>();

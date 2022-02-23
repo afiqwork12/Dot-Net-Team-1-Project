@@ -9482,19 +9482,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\Afiq\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\teamproject\\Actual\\Dot-Net-Team-1-Project\\Actual Project\\CarouselForBooksSolution\\CarouselForBooksApplication\\CarouselForBooksApplication.csproj",
+      "projectUniqueName": "C:\\Users\\Afiq\\Documents\\GitHub\\Dot-Net-Team-1-Project\\Actual Project\\CarouselForBooksSolution\\CarouselForBooksApplication\\CarouselForBooksApplication.csproj",
       "projectName": "CarouselForBooksApplication",
-      "projectPath": "D:\\teamproject\\Actual\\Dot-Net-Team-1-Project\\Actual Project\\CarouselForBooksSolution\\CarouselForBooksApplication\\CarouselForBooksApplication.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\teamproject\\Actual\\Dot-Net-Team-1-Project\\Actual Project\\CarouselForBooksSolution\\CarouselForBooksApplication\\obj\\",
+      "projectPath": "C:\\Users\\Afiq\\Documents\\GitHub\\Dot-Net-Team-1-Project\\Actual Project\\CarouselForBooksSolution\\CarouselForBooksApplication\\CarouselForBooksApplication.csproj",
+      "packagesPath": "C:\\Users\\Afiq\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Afiq\\Documents\\GitHub\\Dot-Net-Team-1-Project\\Actual Project\\CarouselForBooksSolution\\CarouselForBooksApplication\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Afiq\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9506,6 +9513,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -9517,6 +9525,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore": {
             "target": "Package",
@@ -9580,7 +9589,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
       }
     }
   }

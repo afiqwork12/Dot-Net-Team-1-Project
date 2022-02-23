@@ -16,8 +16,8 @@ namespace CarouselForBooksAPI.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Cart>().HasData(
-                new Cart() {CartId = 1,BookId = 1, Username = "john123", Quantity = 2 },
-                new Cart() { CartId = 2, BookId = 2, Username = "john123", Quantity = 3 }
+                new Cart() {CartId = 1,BookId = 1, Username = "afiq123", Quantity = 2 },
+                new Cart() { CartId = 2, BookId = 2, Username = "afiq123", Quantity = 3 }
             );
             base.OnModelCreating(modelBuilder);
         }

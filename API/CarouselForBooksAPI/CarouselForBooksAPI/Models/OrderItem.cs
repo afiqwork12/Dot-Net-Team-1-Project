@@ -14,8 +14,6 @@ namespace CarouselForBooksAPI.Models
         [ForeignKey("OrderId")]
         public Order Order { get; set; }
         public int OrderId { get; set; }
-        [ForeignKey("BookId")]
-        public Book Book { get; set; }
         public int BookId { get; set; }
         public int Quantity { get; set; }
     }

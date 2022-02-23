@@ -19,12 +19,20 @@ namespace CartApp.Controllers
         {
             _context = context;
         }
-
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Cart>>> GetCart()
         {
             return await _context.Carts.ToListAsync();
+        }
+        [HttpGet("user/{username}")]
+        public async Task<ActionResult<IEnumerable<Cart>>> GetCartByUsername(string username)
+        {
+            var carts = await _context.Carts.Where(c => c.Username == username).ToListAsync();
+            if (carts != null)
+            {
+                return Ok(carts);
+            }
+            return NotFound();
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<Cart>> GetCart(int id)
@@ -67,9 +75,18 @@ namespace CartApp.Controllers
             return NoContent();
         }
         [HttpPost]
-        public async Task<ActionResult<Cart>> PostBookGenre(Cart cart)
+        public async Task<ActionResult<Cart>> PostCart(Cart cart)
         {
-            _context.Carts.Add(cart);
+            var existingCarts = _context.Carts.SingleOrDefault(c => c.BookId == cart.BookId && c.Username == cart.Username);
+            if (existingCarts != null)
+            {
+                existingCarts.Quantity += cart.Quantity;
+                _context.Carts.Update(existingCarts);
+            }
+            else
+            {
+                _context.Carts.Add(cart);
+            }
             try
             {
                 await _context.SaveChangesAsync();

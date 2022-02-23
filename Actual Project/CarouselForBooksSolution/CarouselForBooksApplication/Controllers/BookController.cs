@@ -12,9 +12,11 @@ namespace CarouselForBooksApplication.Controllers
     public class BookController : Controller
     {
         private readonly IBook<int, Book, string> _repo;
-        public BookController(IBook<int, Book, string> repo)
+        private readonly ICart<int, Cart, string> _cartRepo;
+        public BookController(IBook<int, Book, string> repo, ICart<int, Cart, string> cartRepo)
         {
             _repo = repo;
+            _cartRepo = cartRepo;
         }
         // GET: BookController
         public async Task<ActionResult> Index()
@@ -71,6 +73,33 @@ namespace CarouselForBooksApplication.Controllers
         public async Task<ActionResult> Edit(int id)
         {
             return await GetBookDetails(id);
+        }
+        public async Task<ActionResult> AddToCart(int id)
+        {
+            if (HttpContext.Session.GetString("token") != null)
+            {
+                string token = HttpContext.Session.GetString("token");
+                string username = HttpContext.Session.GetString("un");
+                _cartRepo.GetToken(token);
+                var cart = await _cartRepo.Add(new Cart() { BookId = id, Username = username, Quantity = 1 });
+                if (cart != null)
+                {
+                    //_cartRepo.GetToken(token);
+                    var carts = await _cartRepo.GetCartsByUsername(username);
+                    if (carts != null)
+                    {
+                        HttpContext.Session.SetString("cartitems", "(" + carts.Sum(c => c.Quantity) + ")");
+                    }
+                    else
+                    {
+                        HttpContext.Session.SetString("cartitems", "(0)");
+                    }
+                    HttpContext.Session.SetString("message", "Successfully added to cart");
+                    return RedirectToAction("Index", "Book", new { area = "" });
+                }
+                return RedirectToAction("Index", "Book", new { area = "" });
+            }
+            return RedirectToAction("Login", "User", new { area = "" });
         }
 
         // POST: BookController/Edit/5

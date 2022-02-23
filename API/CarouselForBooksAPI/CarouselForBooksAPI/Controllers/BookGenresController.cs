@@ -1,5 +1,6 @@
 ﻿using CarouselForBooksAPI.Models;
 using CarouselForBooksAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace CarouselForBooksAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BookGenresController : ControllerBase
     {
         private readonly IRepo<int, BookGenre> _repo;

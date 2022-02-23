@@ -11,9 +11,7 @@ namespace CarouselForBooksApplication.Models
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("UserId")]
-        public User User { get; set; }
-        public int UserId { get; set; }
+        public string Username { get; set; }
         public DateTime DateOrdered { get; set; }
     }
 }

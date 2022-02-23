@@ -38,6 +38,7 @@ namespace CarouselForBooksAPI
             services.AddScoped<IRepo<int, BookGenre>, BookGenreRepo>();
             services.AddScoped<IRepo<int, Genre>, GenreRepo>();
             services.AddScoped<IBook<int, Book, string>, BookRepo>();
+            services.AddScoped<ICart<int, Cart, string>, CartRepo>();
             //services.AddScoped<LoginService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(otps =>

@@ -12,10 +12,12 @@ namespace CarouselForBooksApplication.Controllers
     public class UserController : Controller
     {
         private readonly IUser<string, User> _repo;
+        private readonly ICart<int, Cart, string> _cartRepo;
 
-        public UserController(IUser<string, User> repo)
+        public UserController(IUser<string, User> repo, ICart<int, Cart, string> cartRepo)
         {
             _repo = repo;
+            _cartRepo = cartRepo;
         }
 
         // GET: UserController
@@ -39,17 +41,30 @@ namespace CarouselForBooksApplication.Controllers
             user = await _repo.Login(user);
             if (user != null)
             {
-                SetSessionVariables(user);
-                return RedirectToAction("Index", "Book", new { area = "" });
+                if (await SetSessionVariables(user))
+                {
+                    return RedirectToAction("Index", "Book", new { area = "" });
+                }
             }
             return View();
         }
 
-        private void SetSessionVariables(User user)
+        private async Task<bool> SetSessionVariables(User user)
         {
             HttpContext.Session.SetString("token", user.Token);
             HttpContext.Session.SetString("un", user.Username);
             HttpContext.Session.SetString("role", user.Role);
+            _cartRepo.GetToken(user.Token);
+            var carts = await _cartRepo.GetCartsByUsername(user.Username);
+            if (carts != null)
+            {
+                HttpContext.Session.SetString("cartitems", "(" + carts.Sum(c => c.Quantity) + ")");
+            }
+            else
+            {
+                HttpContext.Session.SetString("cartitems", "(0)");
+            }
+            return true;
         }
 
         public ActionResult Logout()
@@ -84,7 +99,10 @@ namespace CarouselForBooksApplication.Controllers
             user = await _repo.Add(user);
             if (user != null)
             {
-                SetSessionVariables(user);
+                if (await SetSessionVariables(user))
+                {
+                    return RedirectToAction("Index", "Book", new { area = "" });
+                }
                 return RedirectToAction("Index", "Book", new { area = "" });
             }
             return View();
