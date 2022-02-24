@@ -28,18 +28,18 @@ namespace OrderAPI
         {
             services.AddControllers();
             services.AddSwaggerGen();
-            //services.AddDbContext<OrderAPIContext>(
-            //    options =>
-            //    {
-            //        options.UseSqlServer(Configuration.GetConnectionString("afiq"));
-            //    }
-            //);
             services.AddDbContext<OrderAPIContext>(
                 options =>
                 {
-                    options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
+                    options.UseSqlServer(Configuration.GetConnectionString("afiq"));
                 }
             );
+            //services.AddDbContext<OrderAPIContext>(
+            //    options =>
+            //    {
+            //        options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
+            //    }
+            //);
             //services.AddDbContext<OrderAPIContext>(
             //    options =>
             //    {

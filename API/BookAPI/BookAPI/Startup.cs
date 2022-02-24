@@ -30,18 +30,18 @@ namespace BookAPI
         {
             services.AddControllers();
             services.AddScoped<IBook<int, Book, string>, BookEFRepo>();
-            //services.AddDbContext<BookAPIContext>(
-            //    options =>
-            //    {
-            //        options.UseSqlServer(Configuration.GetConnectionString("afiq"));
-            //    }
-            //);
             services.AddDbContext<BookAPIContext>(
                 options =>
                 {
-                    options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
+                    options.UseSqlServer(Configuration.GetConnectionString("afiq"));
                 }
             );
+            //services.AddDbContext<BookAPIContext>(
+            //    options =>
+            //    {
+            //        options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
+            //    }
+            //);
             //services.AddDbContext<BookAPIContext>(
             //    options =>
             //    {

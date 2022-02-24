@@ -18,6 +18,14 @@ namespace CarouselForBooksApplication.Controllers
             _bookRepo = bookRepo;
             _cartRepo = cartRepo;
         }
+        public async Task<ActionResult> ConfirmOrder()
+        {
+            if (HttpContext.Session.GetString("token") != null)
+            {
+                return RedirectToAction("OrderConfirmationPage", "Order", new { area = "" });
+            }
+            return RedirectToAction("Index", "Cart", new { area = "" });
+        }
         // GET: CartController
         public async Task<ActionResult> Index()
         {
@@ -172,6 +180,7 @@ namespace CarouselForBooksApplication.Controllers
                     var userCarts = await _cartRepo.DeleteUserCarts(username);
                     if (userCarts != null)
                     {
+                        HttpContext.Session.SetString("cartitems", "(0)");
                         return RedirectToAction(nameof(Index));
                     }
                 }

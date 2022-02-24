@@ -55,12 +55,12 @@
     {
         @if (@HttpContextAccessor.HttpContext.Session.GetString("role") == "admin")
         {
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+            <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
         }
         else
         {
-            <a asp-action="AddToCart" asp-route-id="@Model.Id">Add to Cart</a>
+            <a class="btn btn-success" asp-action="AddToCart" asp-route-id="@Model.Id">Add to Cart</a>
         }
     }
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
 </div>

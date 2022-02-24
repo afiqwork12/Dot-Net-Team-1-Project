@@ -40,6 +40,10 @@ namespace CarouselForBooksApplication
             services.AddScoped<ICart<int, Cart, string>, CartRepo>();
             services.AddScoped<IRepo<int, BookGenre>, BookGenreRepo>();
             services.AddScoped<IRepo<int, Genre>, GenreRepo>();
+            services.AddScoped<IOrder<int, Order, string>, OrderRepo>();
+            services.AddScoped<IOrderItem<int, OrderItem, int>, OrderItemRepo>();
+            services.AddSession();
+            services.AddHttpContextAccessor();
             //services.AddScoped<LoginService>();
             //services.AddDbContext<CFBDBContext>(
             //    options =>
@@ -47,15 +51,13 @@ namespace CarouselForBooksApplication
             //        options.UseSqlServer(Configuration.GetConnectionString("afiq"));
             //    }
             //);
-           
+
             //services.AddDbContext<CFBDBContext>(
             //    options =>
             //    {
             //        options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
             //    }
             //);
-            services.AddSession();
-            services.AddHttpContextAccessor();
             //services.AddDbContext<CFBDBContext>(
             //    options =>
             //    {

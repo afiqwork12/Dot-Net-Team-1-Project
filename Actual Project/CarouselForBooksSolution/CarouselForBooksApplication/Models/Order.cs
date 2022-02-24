@@ -12,6 +12,10 @@ namespace CarouselForBooksApplication.Models
         [Key]
         public int Id { get; set; }
         public string Username { get; set; }
+        [DataType(DataType.Date)]
         public DateTime DateOrdered { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
+        [DataType(DataType.Currency)]
+        public double TotalCost { get; set; }
     }
 }

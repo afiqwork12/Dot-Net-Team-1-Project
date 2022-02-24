@@ -25,18 +25,18 @@ namespace CartApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            //services.AddDbContext<CFBDBContext>(
-            //    options =>
-            //    {
-            //        options.UseSqlServer(Configuration.GetConnectionString("afiq"));
-            //    }
-            //);
             services.AddDbContext<CFBDBContext>(
                 options =>
                 {
-                    options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
+                    options.UseSqlServer(Configuration.GetConnectionString("afiq"));
                 }
             );
+            //services.AddDbContext<CFBDBContext>(
+            //    options =>
+            //    {
+            //        options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
+            //    }
+            //);
             //services.AddDbContext<BookAPIContext>(
             //    options =>
             //    {

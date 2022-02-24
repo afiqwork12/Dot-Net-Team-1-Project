@@ -38,6 +38,18 @@ namespace OrderAPI.Controllers
 
             return order;
         }
+        [HttpGet("user/{username}")]
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByUsername(string username)
+        {
+            var orders = _context.Orders.Where(o => o.Username == username).ToList();
+
+            if (orders == null)
+            {
+                return NotFound();
+            }
+
+            return orders;
+        }
 
         // POST api/<OrdersController>
         [HttpPost]

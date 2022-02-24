@@ -39,6 +39,8 @@ namespace CarouselForBooksAPI
             services.AddScoped<IRepo<int, Genre>, GenreRepo>();
             services.AddScoped<IBook<int, Book, string>, BookRepo>();
             services.AddScoped<ICart<int, Cart, string>, CartRepo>();
+            services.AddScoped<IOrder<int, Order, string>, OrderRepo>();
+            services.AddScoped<IOrderItem<int, OrderItem, int>, OrderItemRepo>();
             //services.AddScoped<LoginService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(otps =>
@@ -51,18 +53,18 @@ namespace CarouselForBooksAPI
                     ValidateAudience = false
                 };
             });
-            //services.AddDbContext<CFBDBContext>(
-            //    options =>
-            //    {
-            //        options.UseSqlServer(Configuration.GetConnectionString("afiq"));
-            //    }
-            //);
             services.AddDbContext<CFBDBContext>(
                 options =>
                 {
-                    options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
+                    options.UseSqlServer(Configuration.GetConnectionString("afiq"));
                 }
             );
+            //services.AddDbContext<CFBDBContext>(
+            //    options =>
+            //    {
+            //        options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
+            //    }
+            //);
             //services.AddDbContext<CFBDBContext>(
             //    options =>
             //    {
