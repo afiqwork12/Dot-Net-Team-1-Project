@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "c52369dc-7ad0-4d89-bc1f-faf9c9cdfe88": {
+      "ProjectGuid": "c52369dc-7ad0-4d89-bc1f-faf9c9cdfe88",
+      "DisplayName": "CartApp",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

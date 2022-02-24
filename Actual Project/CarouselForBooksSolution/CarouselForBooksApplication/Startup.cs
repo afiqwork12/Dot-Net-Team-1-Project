@@ -47,14 +47,15 @@ namespace CarouselForBooksApplication
             //        options.UseSqlServer(Configuration.GetConnectionString("afiq"));
             //    }
             //);
-            services.AddSession();
-            services.AddHttpContextAccessor();
+           
             //services.AddDbContext<CFBDBContext>(
             //    options =>
             //    {
             //        options.UseSqlServer(Configuration.GetConnectionString("phoebe"));
             //    }
             //);
+            services.AddSession();
+            services.AddHttpContextAccessor();
             //services.AddDbContext<CFBDBContext>(
             //    options =>
             //    {
