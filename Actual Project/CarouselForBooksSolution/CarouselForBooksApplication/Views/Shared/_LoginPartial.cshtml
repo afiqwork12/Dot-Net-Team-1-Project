@@ -10,10 +10,20 @@
                 <li>
                     <a asp-area="" asp-controller="Cart" asp-action="Index">Cart @HttpContextAccessor.HttpContext.Session.GetString("cartitems")</a>
                 </li>
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello @HttpContextAccessor.HttpContext.Session.GetString("un")!</a>
+                    <ul class="dropdown-menu">
+                        <li><a asp-area="" asp-controller="Order" asp-action="Index">View Past Orders</a></li>
+                        <li><a asp-area="" asp-controller="User" asp-action="Edit">Edit Profile</a></li>
+                    </ul>
+                </li>
             }
-            <li>
-                <a asp-area="" asp-controller="Book" asp-action="Index">Hello @HttpContextAccessor.HttpContext.Session.GetString("un")!</a>
-            </li>
+            else
+            {
+                <li>
+                    <a asp-area="" asp-controller="Book" asp-action="Index">Hello @HttpContextAccessor.HttpContext.Session.GetString("un")!</a>
+                </li>
+            }
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
             </li>

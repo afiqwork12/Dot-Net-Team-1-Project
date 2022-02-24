@@ -56,7 +56,7 @@ namespace CarouselForBooksApplication.Controllers
             HttpContext.Session.SetString("role", user.Role);
             _cartRepo.GetToken(user.Token);
             var carts = await _cartRepo.GetCartsByUsername(user.Username);
-            if (carts != null)
+            if (carts != null && carts.Count() > 0)
             {
                 HttpContext.Session.SetString("cartitems", "(" + carts.Sum(c => c.Quantity) + ")");
             }

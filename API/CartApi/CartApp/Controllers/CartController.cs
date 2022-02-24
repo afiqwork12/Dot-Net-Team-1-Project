@@ -47,32 +47,48 @@ namespace CartApp.Controllers
             return cart;
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCart(int id, Cart cart)
+        public async Task<ActionResult<Cart>> PutCart(int id, Cart cart)
         {
-            if (id != cart.CartId)
+            if (cart.Quantity == 0)
             {
-                return BadRequest();
-            }
-
-            _context.Entry(cart).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CartExists(id))
+                cart = await _context.Carts.FindAsync(id);
+                if (cart == null)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return NoContent();
+                _context.Carts.Remove(cart);
+                await _context.SaveChangesAsync();
+
+                return Ok(cart);
+            }
+            else
+            {
+                if (id != cart.CartId)
+                {
+                    return BadRequest();
+                }
+
+                _context.Entry(cart).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CartExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return Ok(cart);
+            }
         }
         [HttpPost]
         public async Task<ActionResult<Cart>> PostCart(Cart cart)
@@ -120,6 +136,26 @@ namespace CartApp.Controllers
             await _context.SaveChangesAsync();
 
             return cart;
+        }
+
+        // DELETE: api/BookGenre/5
+        [HttpDelete("user/{username}")]
+        public async Task<ActionResult<IEnumerable<Cart>>> DeleteUserCarts(string username)
+        {
+            var carts = _context.Carts.Where(c => c.Username == username).ToList();
+            if (carts == null)
+            {
+                return NotFound();
+            }
+
+            foreach (var item in carts)
+            {
+                _context.Carts.Remove(item);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return carts;
         }
 
         private bool CartExists(int id)

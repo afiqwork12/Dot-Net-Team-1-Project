@@ -51,6 +51,23 @@ namespace CarouselForBooksAPI.Services
             return null;
         }
 
+        public async Task<IEnumerable<Cart>> DeleteUserCarts(string username)
+        {
+            using (_httpClient)
+            {
+                using (var response = await _httpClient.DeleteAsync("http://localhost:25258/api/Cart/user/" + username))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseText = await response.Content.ReadAsStringAsync();
+                        var Carts = JsonConvert.DeserializeObject<IEnumerable<Cart>>(responseText);
+                        return Carts;
+                    }
+                }
+            }
+            return null;
+        }
+
         public async Task<Cart> Get(int key)
         {
             using (_httpClient)
@@ -107,7 +124,7 @@ namespace CarouselForBooksAPI.Services
             using (_httpClient)
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-                using (var response = await _httpClient.PutAsync("http://localhost:25258/api/Cart/", content))
+                using (var response = await _httpClient.PutAsync("http://localhost:25258/api/Cart/" + item.CartId, content))
                 {
                     if (response.IsSuccessStatusCode)
                     {

@@ -14,5 +14,9 @@ namespace CarouselForBooksApplication.Models
         public int BookId { get; set; }
         public string Username { get; set; }
         public int Quantity { get; set; }
+        public Book Book { get; set; }
+        [Display(Name = "Total Cost")]
+        [DataType(DataType.Currency)]
+        public double TotalCost { get; set; }
     }
 }

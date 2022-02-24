@@ -91,5 +91,16 @@ namespace CarouselForBooksAPI.Controllers
             }
             return BadRequest("Unable to delete cart");
         }
+        // DELETE api/<CartsController>/5
+        [HttpDelete("user/{username}")]
+        public async Task<ActionResult> DeleteUserCarts(string username)
+        {
+            var cart = await _repo.DeleteUserCarts(username);
+            if (cart != null)
+            {
+                return Ok(cart);
+            }
+            return BadRequest("Unable to delete user carts");
+        }
     }
 }
