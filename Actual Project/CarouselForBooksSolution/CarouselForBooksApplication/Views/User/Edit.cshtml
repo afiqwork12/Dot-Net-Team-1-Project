@@ -1,36 +1,35 @@
 ﻿@model CarouselForBooksApplication.Models.User
 
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Edit";
 }
 <partial name="_MessageWarningPartial" />
-<h2>Register</h2>
+<h2>Edit Profile</h2>
 
-<h4>User</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Register">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
+                <input asp-for="Username" class="form-control" readonly />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <label class="control-label">Enter Old Password</label>
+                <input asp-for="Password" type="password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmPassword" class="control-label"></label>
-                <input asp-for="ConfirmPassword" class="form-control" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                <label class="control-label">Enter New Password</label>
+                <input asp-for="NewPassword" type="password" class="form-control" />
+                <span asp-validation-for="NewPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Token" class="control-label"></label>
-                <input asp-for="Token" class="form-control" />
-                <span asp-validation-for="Token" class="text-danger"></span>
+                <label class="control-label">Re-type New Password</label>
+                <input asp-for="ConfirmNewPassword" type="password" class="form-control" />
+                <span asp-validation-for="ConfirmNewPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -48,19 +47,14 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Book" asp-action="Index">Back to Main Page</a>
 </div>
 
 @section Scripts {

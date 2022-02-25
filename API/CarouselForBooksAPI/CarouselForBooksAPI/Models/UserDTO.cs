@@ -10,6 +10,8 @@ namespace CarouselForBooksAPI.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
+        public string NewPassword { get; set; }
+        public string ConfirmNewPassword { get; set; }
         public string Token { get; set; }
         public string Name { get; set; }
         public DateTime Dob { get; set; }

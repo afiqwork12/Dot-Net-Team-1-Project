@@ -30,6 +30,27 @@ namespace CarouselForBooksApplication.Controllers
             }
             return RedirectToAction("Login", "User", new { area = "" });
         }
+        [HttpPost]
+        public async Task<ActionResult> Index(string query)
+        {
+            if (HttpContext.Session.GetString("token") != null)
+            {
+                if (query == "")
+                {
+                    return RedirectToAction("Index", "Book", new { area = "" });
+                }
+                string token = HttpContext.Session.GetString("token");
+                _repo.GetToken(token);
+                var books = await _repo.Search(query);
+                if (books != null)
+                {
+                    HttpContext.Session.SetString("searchMsg", "Searched for - " + query);
+                    return View(books);
+                }
+                return RedirectToAction("Index", "Book", new { area = "" });
+            }
+            return RedirectToAction("Login", "User", new { area = "" });
+        }
 
         // GET: BookController/Details/5
         public async Task<ActionResult> Details(int id)
@@ -88,11 +109,11 @@ namespace CarouselForBooksApplication.Controllers
                     var carts = await _cartRepo.GetCartsByUsername(username);
                     if (carts != null && carts.Count() > 0)
                     {
-                        HttpContext.Session.SetString("cartitems", "(" + carts.Sum(c => c.Quantity) + ")");
+                        HttpContext.Session.SetString("cartitems", carts.Sum(c => c.Quantity) + "");
                     }
                     else
                     {
-                        HttpContext.Session.SetString("cartitems", "(0)");
+                        HttpContext.Session.SetString("cartitems", "0");
                     }
                     HttpContext.Session.SetString("message", "Successfully added to cart");
                     return RedirectToAction("Index", "Book", new { area = "" });

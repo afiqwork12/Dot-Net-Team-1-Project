@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CarouselForBooksApplication.Models.Order>
+
+@{
+    ViewData["Title"] = "Past Orders";
+}
+
+<h2>Past Orders</h2>
+
+@foreach (var item in Model)
+{
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => item.DateOrdered)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => item.DateOrdered)
+        </dd>
+        <dt>
+        </dt>
+        <dd>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Quantity</th>
+                        <th>Cost</th>
+                        <th class="text-right">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item1 in item.OrderItems)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item1.Book.Title)</td>
+                            <td>@Html.DisplayFor(modelItem => item1.Quantity)</td>
+                            <td>@Html.DisplayFor(modelItem => item1.Book.Cost)</td>
+                            <td class="text-right">@string.Format("{0:C}", item1.Book.Cost * item1.Quantity)</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right"><b>@Html.DisplayNameFor(model => model.TotalCost)</b> &nbsp; @Html.DisplayFor(model => item.TotalCost)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </dd>
+    </dl>
+}

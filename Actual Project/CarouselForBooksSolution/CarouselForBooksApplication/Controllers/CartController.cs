@@ -180,7 +180,7 @@ namespace CarouselForBooksApplication.Controllers
                     var userCarts = await _cartRepo.DeleteUserCarts(username);
                     if (userCarts != null)
                     {
-                        HttpContext.Session.SetString("cartitems", "(0)");
+                        HttpContext.Session.SetString("cartitems", "0");
                         return RedirectToAction(nameof(Index));
                     }
                 }

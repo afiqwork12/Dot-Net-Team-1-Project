@@ -107,7 +107,7 @@ namespace CarouselForBooksAPI.Services
         {
             using (_httpClient)
             {
-                using (var response = await _httpClient.GetAsync("https://localhost:44332/api/book/filter/" + query))
+                using (var response = await _httpClient.GetAsync("https://localhost:44332/api/book/search/" + query))
                 {
                     if (response.IsSuccessStatusCode)
                     {

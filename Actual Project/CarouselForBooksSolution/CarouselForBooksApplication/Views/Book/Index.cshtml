@@ -11,25 +11,67 @@
 </style>
 <partial name="_MessagePartial" />
 <h1>Book Listings</h1>
+<form action="index" method="post" class="input-group">
+    <input type="text" class="form-control" placeholder="Search for..." name="query">
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Go!</button>
+    </span>
+</form>
+
+@if (@HttpContextAccessor.HttpContext.Session.GetString("searchMsg") != null)
+{
+    if (@HttpContextAccessor.HttpContext.Session.GetString("searchMsg") != "")
+    {
+        string message = @HttpContextAccessor.HttpContext.Session.GetString("searchMsg");
+        <h5>@message</h5>
+        HttpContextAccessor.HttpContext.Session.SetString("searchMsg", "");
+    }
+}
+
 <div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach (var item in Model)
     {
+        @*<div class="panel panel-default" id="divCard">
+                <div class="panel-heading"><b>@item.Title</b></div>
+                <div class="panel-body">
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        <img class="img-thumbnail" src="@Url.Content(item.Picture)" alt="@item.Picture" height="350" width="250">
+                    </a>
+                    <br/>
+                    Price: $@item.Cost
+                </div>
+                <div class="panel-footer">
+                    @if (HttpContextAccessor.HttpContext.Session.GetString("role") != null)
+                    {
+                        @if (HttpContextAccessor.HttpContext.Session.GetString("role") == "admin")
+                        {
+                            <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Edit</a>@:&nbsp;
+                            <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">View Details</a>@:&nbsp;
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-success" asp-action="AddToCart" asp-route-id="@item.Id">Add To Cart</a>
+                            <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">View Details</a>
+                        }
+                    }
+                </div>
+            </div>*@
         <div class="col">
             <div id="divCard" class="card" style="border:double 3px; padding: 3px; border-radius: 2px;">
                 <a asp-action="Details" asp-route-id="@item.Id">
-                    <img class="card-img-top" src="@Url.Content(item.Picture)" alt="Card image cap" height="350" width="250">
+                    <img class="card-img-top" src="@Url.Content(item.Picture)" alt="Card image cap" height="350" width="259">
                 </a>
-                <div class="card-body">
-                    <h5 class="card-title"><b>@item.Title</b> </h5>
-                    Price: $@item.Cost
+                <div class="card-body text-center">
+                    <h5 class="card-title"><b>@item.Title</b> <br /><b>by @item.Author</b> <br /> <b>Price:</b> $@item.Cost</h5>
                     <div class="card-footer">
                         @if (HttpContextAccessor.HttpContext.Session.GetString("role") != null)
                         {
                             @if (HttpContextAccessor.HttpContext.Session.GetString("role") == "admin")
                             {
                                 <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Edit</a>@:&nbsp;
-                                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">View Details</a>@:&nbsp;
-                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">View Details</a>
+                                @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
                             }
                             else
                             {

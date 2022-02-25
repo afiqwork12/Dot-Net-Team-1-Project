@@ -91,9 +91,11 @@ namespace CarouselForBooksApplication.Services
 
         public async Task<IEnumerable<OrderItem>> GetOrderItemsByOrderId(int orderId)
         {
-            using (_httpClient)
+            using (var _httpClient1 = new HttpClient())
             {
-                using (var response = await _httpClient.GetAsync("http://localhost:50451/api/orderitems/orderid/" + orderId))
+                _httpClient1.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                _httpClient1.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+                using (var response = await _httpClient1.GetAsync("http://localhost:50451/api/orderitems/orderid/" + orderId))
                 {
                     if (response.IsSuccessStatusCode)
                     {

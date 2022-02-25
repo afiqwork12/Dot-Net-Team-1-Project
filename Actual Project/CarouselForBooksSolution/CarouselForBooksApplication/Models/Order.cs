@@ -16,6 +16,7 @@ namespace CarouselForBooksApplication.Models
         public DateTime DateOrdered { get; set; }
         public List<OrderItem> OrderItems { get; set; }
         [DataType(DataType.Currency)]
+        [Display(Name ="Total Cost")]
         public double TotalCost { get; set; }
     }
 }

@@ -20,7 +20,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Book.Cost)
                 </th>
-                <th>
+                <th class="text-center">
                     @Html.DisplayNameFor(model => model.Quantity)
                 </th>
                 <th class="text-right">
@@ -41,7 +41,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Book.Cost)
                     </td>
-                    <td>
+                    <td class="text-center">
                         <a class="btn btn-default" asp-action="Increase" asp-route-CartId="@item.CartId"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                         @Html.DisplayFor(modelItem => item.Quantity)
                         <a class="btn btn-default" asp-action="Decrease" asp-route-CartId="@item.CartId"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
@@ -77,6 +77,6 @@
 }
 else
 {
-    <h3>Please add some books to the cart</h3>
+    <h3>Cart is empty - Please add some books to the cart</h3>
 }
 

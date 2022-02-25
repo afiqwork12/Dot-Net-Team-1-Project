@@ -46,6 +46,7 @@ namespace CarouselForBooksApplication.Controllers
                     return RedirectToAction("Index", "Book", new { area = "" });
                 }
             }
+            HttpContext.Session.SetString("message", "Login Failed - Try Again");
             return View();
         }
 
@@ -58,11 +59,11 @@ namespace CarouselForBooksApplication.Controllers
             var carts = await _cartRepo.GetCartsByUsername(user.Username);
             if (carts != null && carts.Count() > 0)
             {
-                HttpContext.Session.SetString("cartitems", "(" + carts.Sum(c => c.Quantity) + ")");
+                HttpContext.Session.SetString("cartitems", carts.Sum(c => c.Quantity) + "");
             }
             else
             {
-                HttpContext.Session.SetString("cartitems", "(0)");
+                HttpContext.Session.SetString("cartitems", "0");
             }
             return true;
         }
@@ -101,10 +102,11 @@ namespace CarouselForBooksApplication.Controllers
             {
                 if (await SetSessionVariables(user))
                 {
+                    HttpContext.Session.SetString("message", "Successfully registered");
                     return RedirectToAction("Index", "Book", new { area = "" });
                 }
-                return RedirectToAction("Index", "Book", new { area = "" });
             }
+            HttpContext.Session.SetString("message", "Registration Failed - Try Again");
             return View();
         }
 
@@ -122,26 +124,66 @@ namespace CarouselForBooksApplication.Controllers
             user = await _repo.Add(user);
             if (user != null)
             {
-                SetSessionVariables(user);
-                return RedirectToAction("Index", "Book", new { area = "" });
+                if(await SetSessionVariables(user))
+                {
+                    HttpContext.Session.SetString("message", "Successfully registered");
+                    return RedirectToAction("Index", "Book", new { area = "" });
+                }
             }
+            HttpContext.Session.SetString("message", "Registration Failed - Try Again");
             return View();
         }
 
         // GET: UserController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit()
         {
+            if (HttpContext.Session.GetString("token") != null)
+            {
+                var username = HttpContext.Session.GetString("un");
+                string token = HttpContext.Session.GetString("token");
+                var user = await _repo.Get(username);
+                if (user != null)
+                {
+                    user.Password = null;
+                    user.ConfirmNewPassword = null;
+                    return View(user);
+                }
+            }
             return View();
         }
 
         // POST: UserController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, User user)
+        public async Task<ActionResult> Edit(int id, User user)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (HttpContext.Session.GetString("token") != null)
+                {
+                    var checkUser = await _repo.Login(new User() { Username = user.Username, Password = user.Password });
+                    if (checkUser != null)
+                    {
+                        user.Password = user.NewPassword;
+                        user.ConfirmPassword = user.ConfirmNewPassword;
+                        user.NewPassword = null;
+                        user.ConfirmNewPassword = null;
+                        user.Token = null;
+                        user.Role = "user";
+                        user = await _repo.Update(user);
+                        if (user != null)
+                        {
+                            HttpContext.Session.SetString("message", "Successfully Updated Profile");
+                            return RedirectToAction("Index", "Book", new { area = "" });
+                        }
+                    }
+                    else
+                    {
+                        HttpContext.Session.SetString("message", "Old Password incorrect");
+                        return View(user);
+                    }
+                }
+                return RedirectToAction("Index", "Book", new { area = "" });
             }
             catch
             {

@@ -69,10 +69,10 @@ namespace CarouselForBooksApplication.Services
 
         public async Task<User> Update(User t)
         {
-            using (_httpClient)
+            using (var _httpClient1 = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(t), Encoding.UTF8, "application/json");
-                using (var response = await _httpClient.PutAsync("http://localhost:50451/api/users/" + t.Username, content))
+                using (var response = await _httpClient1.PutAsync("http://localhost:50451/api/users/" , content))
                 {
                     if (response.IsSuccessStatusCode)
                     {

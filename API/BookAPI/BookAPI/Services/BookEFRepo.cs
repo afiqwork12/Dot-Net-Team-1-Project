@@ -59,7 +59,7 @@ namespace BookAPI.Services
         }
         public async Task<IEnumerable<Book>> Search(string query)
         {
-            var books = _context.Books.Where(b => (b.Title + "," + b.Description + "," + b.Language).Contains(query)).ToList();
+            var books = _context.Books.Where(b => (b.Title + "," + b.Language).Contains(query)).ToList();
             if (books != null)
             {
                 return books;

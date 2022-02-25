@@ -12,13 +12,19 @@ namespace CarouselForBooksApplication.Models
         [Required(ErrorMessage = "Username is required.")]
         public string Username { get; set; }
         [Required(ErrorMessage = "Password is required.")]
-        //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8}$", ErrorMessage = "Password must meet requirements")]
         public string Password { get; set; }
         [Required(ErrorMessage = "Re-Type Password is required.")]
         [Compare(nameof(Password), ErrorMessage = "Passwords don't match.")]
         [Display(Name = "Re-Type Password")]
-        //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8}$", ErrorMessage = "Password must meet requirements")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "New Password is required.")]
+        public string NewPassword { get; set; }
+        [Required(ErrorMessage = "Re-Type New Password is required.")]
+        [Compare(nameof(NewPassword), ErrorMessage = "Passwords don't match.")]
+        [Display(Name = "Re-Type New Password")]
+        public string ConfirmNewPassword { get; set; }
+
         public string Token { get; set; }
         [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }

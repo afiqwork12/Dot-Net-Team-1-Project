@@ -7,16 +7,19 @@
         <ul class="nav navbar-nav navbar-right">
             @if (@HttpContextAccessor.HttpContext.Session.GetString("role") == "user")
             {
+                <li><a href="#">Hello @HttpContextAccessor.HttpContext.Session.GetString("un")!</a></li>
+                <li><a asp-area="" asp-controller="Order" asp-action="Index">View Past Orders</a></li>
+                <li><a asp-area="" asp-controller="User" asp-action="Edit">Edit Profile</a></li>
                 <li>
-                    <a asp-area="" asp-controller="Cart" asp-action="Index">Cart @HttpContextAccessor.HttpContext.Session.GetString("cartitems")</a>
+                    <a asp-area="" asp-controller="Cart" asp-action="Index" style="font-size:18px; color:white"><strong>Cart <span class="badge">@HttpContextAccessor.HttpContext.Session.GetString("cartitems")</span></strong></a>
                 </li>
-                <li role="presentation" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello @HttpContextAccessor.HttpContext.Session.GetString("un")!</a>
-                    <ul class="dropdown-menu">
-                        <li><a asp-area="" asp-controller="Order" asp-action="Index">View Past Orders</a></li>
-                        <li><a asp-area="" asp-controller="User" asp-action="Edit">Edit Profile</a></li>
-                    </ul>
-                </li>
+                @*<li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello @HttpContextAccessor.HttpContext.Session.GetString("un")!</a>
+                <ul class="dropdown-menu">
+                    <li><a asp-area="" asp-controller="Order" asp-action="Index">View Past Orders</a></li>
+                    <li><a asp-area="" asp-controller="User" asp-action="Edit">Edit Profile</a></li>
+                </ul>
+            </li>*@
             }
             else
             {

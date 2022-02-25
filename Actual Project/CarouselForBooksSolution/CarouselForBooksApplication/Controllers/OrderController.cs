@@ -23,8 +23,33 @@ namespace CarouselForBooksApplication.Controllers
             _orderItemRepo = orderItemRepo;
         }
         // GET: OrderController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+            if (HttpContext.Session.GetString("token") != null)
+            {
+                var username = HttpContext.Session.GetString("un");
+                string token = HttpContext.Session.GetString("token");
+                _orderRepo.GetToken(token);
+                var orders = await _orderRepo.GetOrdersByUsername(username);
+                var listOrders = orders.ToList();
+                for (int i = 0; i < orders.Count(); i++)
+                {
+                    _orderItemRepo.GetToken(token);
+                    var orderItemsC = await _orderItemRepo.GetOrderItemsByOrderId(listOrders[i].Id);
+                    if (orderItemsC != null && orderItemsC.Count() > 0)
+                    {
+                        var listorderItemsC = orderItemsC.ToList();
+                        for (int j = 0; j < listorderItemsC.Count(); j++)
+                        {
+                            _bookRepo.GetToken(token);
+                            listorderItemsC[j].Book = await _bookRepo.GetT(listorderItemsC[j].BookId);
+                        }
+                        listOrders[i].OrderItems = listorderItemsC;
+                        listOrders[i].TotalCost = listOrders[i].OrderItems.Sum(oi => oi.Book.Cost * oi.Quantity);
+                    }
+                }
+                return View(listOrders.OrderByDescending(lo => lo.DateOrdered));
+            }
             return View();
         }
         public async Task<ActionResult> OrderConfirmationPage()
@@ -90,7 +115,7 @@ namespace CarouselForBooksApplication.Controllers
                         orderItem = await _orderItemRepo.Add(orderItem);
                     }
                     userCarts = await _cartRepo.DeleteUserCarts(username);
-                    HttpContext.Session.SetString("cartitems", "(0)");
+                    HttpContext.Session.SetString("cartitems", "0");
                     HttpContext.Session.SetString("message", "Order Confirmed");
                     return RedirectToAction("Index", "Book", new { area = "" });
                 }

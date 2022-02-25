@@ -379,3 +379,6 @@ C:\Users\phoeb\Desktop\New folder (2)\Dot-Net-Team-1-Project\Actual Project\Caro
 C:\Users\phoeb\Desktop\New folder (2)\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp3.1\CarouselForBooksApplication.pdb
 C:\Users\phoeb\Desktop\New folder (2)\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp3.1\CarouselForBooksApplication.genruntimeconfig.cache
 C:\Users\Afiq\Documents\GitHub\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp3.1\Razor\Views\Order\OrderConfirmationPage.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp3.1\Razor\Views\User\Edit.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_MessageWarningPartial.cshtml.g.cs
+C:\Users\Afiq\Documents\GitHub\Dot-Net-Team-1-Project\Actual Project\CarouselForBooksSolution\CarouselForBooksApplication\obj\Debug\netcoreapp3.1\Razor\Views\Order\Index.cshtml.g.cs
