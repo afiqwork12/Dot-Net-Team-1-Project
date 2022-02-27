@@ -10,8 +10,8 @@ using OrderAPI.Models;
 namespace OrderAPI.Migrations
 {
     [DbContext(typeof(OrderAPIContext))]
-    [Migration("20220224091846_init")]
-    partial class init
+    [Migration("20220227140527_int")]
+    partial class @int
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

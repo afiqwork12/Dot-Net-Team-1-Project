@@ -89,7 +89,7 @@ namespace CarouselForBooksAPI.Services
         {
             using (_httpClient)
             {
-                using (var response = await _httpClient.GetAsync("https://localhost:25258/api/Cart/"))
+                using (var response = await _httpClient.GetAsync("http://localhost:25258/api/Cart/"))
                 {
                     if (response.IsSuccessStatusCode)
                     {

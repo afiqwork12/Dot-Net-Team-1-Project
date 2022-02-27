@@ -54,6 +54,7 @@ namespace CarouselForBooksApplication.Controllers
             if (HttpContext.Session.GetString("token") != null)
             {
                 string token = HttpContext.Session.GetString("token");
+                var username = HttpContext.Session.GetString("un");
                 _cartRepo.GetToken(token);
                 var cart = await _cartRepo.GetT(CartId);
                 if (cart != null)
@@ -63,6 +64,15 @@ namespace CarouselForBooksApplication.Controllers
                     cart = await _cartRepo.Update(cart);
                     if (cart != null)
                     {
+                        var carts = await _cartRepo.GetCartsByUsername(username);
+                        if (carts != null && carts.Count() > 0)
+                        {
+                            HttpContext.Session.SetString("cartitems", carts.Sum(c => c.Quantity) + "");
+                        }
+                        else
+                        {
+                            HttpContext.Session.SetString("cartitems", "0");
+                        }
                         HttpContext.Session.SetString("message", "Successfully increased quantity");
                         return RedirectToAction("Index", "Cart", new { area = "" });
                     }
@@ -75,6 +85,7 @@ namespace CarouselForBooksApplication.Controllers
             if (HttpContext.Session.GetString("token") != null)
             {
                 string token = HttpContext.Session.GetString("token");
+                var username = HttpContext.Session.GetString("un");
                 _cartRepo.GetToken(token);
                 var cart = await _cartRepo.GetT(CartId);
                 if (cart != null)
@@ -85,6 +96,15 @@ namespace CarouselForBooksApplication.Controllers
                     cart = await _cartRepo.Update(cart);
                     if (cart != null)
                     {
+                        var carts = await _cartRepo.GetCartsByUsername(username);
+                        if (carts != null && carts.Count() > 0)
+                        {
+                            HttpContext.Session.SetString("cartitems", carts.Sum(c => c.Quantity) + "");
+                        }
+                        else
+                        {
+                            HttpContext.Session.SetString("cartitems", "0");
+                        }
                         HttpContext.Session.SetString("message", quantity == 0 ? "Successfully removed from cart" : "Successfully decreased quantity");
                         return RedirectToAction("Index", "Cart", new { area = "" });
                     }

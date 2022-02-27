@@ -61,15 +61,18 @@ namespace CarouselForBooksApplication.Services
 
         public async Task<IEnumerable<Book>> GetAll()
         {
-            using (_httpClient)
+            using (var _httpClient1 = new HttpClient())
             {
-                using (var response = await _httpClient.GetAsync("http://localhost:50451/api/Books"))
+                _httpClient1.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                _httpClient1.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+                using (var response = await _httpClient1.GetAsync("http://localhost:50451/api/Books"))
                 {
                     if (response.IsSuccessStatusCode)
                     {
                         string responseText = await response.Content.ReadAsStringAsync();
                         var books = JsonConvert.DeserializeObject<IEnumerable<Book>>(responseText);
-                        return books;
+                        var bookList = books.Where(b => b.Title != "unavailable").ToList();
+                        return bookList;
                     }
                 }
             }
@@ -123,7 +126,7 @@ namespace CarouselForBooksApplication.Services
                     {
                         string responseText = await response.Content.ReadAsStringAsync();
                         var books = JsonConvert.DeserializeObject<IEnumerable<Book>>(responseText);
-                        return books;
+                        return books.Where(b => b.Title != "unavailable");
                     }
                 }
             }
@@ -140,7 +143,7 @@ namespace CarouselForBooksApplication.Services
                     {
                         string responseText = await response.Content.ReadAsStringAsync();
                         var books = JsonConvert.DeserializeObject<IEnumerable<Book>>(responseText);
-                        return books;
+                        return books.Where(b => b.Title != "unavailable");
                     }
                 }
             }

@@ -7,7 +7,7 @@
         <ul class="nav navbar-nav navbar-right">
             @if (@HttpContextAccessor.HttpContext.Session.GetString("role") == "user")
             {
-                <li><a href="#">Hello @HttpContextAccessor.HttpContext.Session.GetString("un")!</a></li>
+                <li><a asp-area="" asp-controller="Book" asp-action="Index">Hello @HttpContextAccessor.HttpContext.Session.GetString("un")!</a></li>
                 <li><a asp-area="" asp-controller="Order" asp-action="Index">View Past Orders</a></li>
                 <li><a asp-area="" asp-controller="User" asp-action="Edit">Edit Profile</a></li>
                 <li>

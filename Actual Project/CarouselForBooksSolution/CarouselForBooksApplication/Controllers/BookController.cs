@@ -2,10 +2,12 @@
 using CarouselForBooksApplication.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace CarouselForBooksApplication.Controllers
 {
@@ -13,10 +15,14 @@ namespace CarouselForBooksApplication.Controllers
     {
         private readonly IBook<int, Book, string> _repo;
         private readonly ICart<int, Cart, string> _cartRepo;
-        public BookController(IBook<int, Book, string> repo, ICart<int, Cart, string> cartRepo)
+        private readonly IRepo<int, BookGenre> _bookGenreRepo;
+        private readonly IRepo<int, Genre> _genreRepo;
+        public BookController(IBook<int, Book, string> repo, ICart<int, Cart, string> cartRepo, IRepo<int, BookGenre> bookGenreRepo, IRepo<int, Genre> genreRepo)
         {
             _repo = repo;
             _cartRepo = cartRepo;
+            _bookGenreRepo = bookGenreRepo;
+            _genreRepo = genreRepo;
         }
         // GET: BookController
         public async Task<ActionResult> Index()
@@ -26,30 +32,56 @@ namespace CarouselForBooksApplication.Controllers
                 string token = HttpContext.Session.GetString("token");
                 _repo.GetToken(token);
                 var books = await _repo.GetAll();
-                return View(books);
+                var bookList = books.ToList();
+                for (int i = 0; i < bookList.Count; i++)
+                {
+                    bookList[i].Genres = await GetGenres(bookList[i].Id, token);
+                }
+                return View(bookList);
             }
             return RedirectToAction("Login", "User", new { area = "" });
         }
         [HttpPost]
         public async Task<ActionResult> Index(string query)
         {
-            if (HttpContext.Session.GetString("token") != null)
+            if (query != null)
             {
-                if (query == "")
+                if (HttpContext.Session.GetString("token") != null)
                 {
+                    if (query == "")
+                    {
+                        return RedirectToAction("Index", "Book", new { area = "" });
+                    }
+                    string token = HttpContext.Session.GetString("token");
+                    _repo.GetToken(token);
+                    var books = await _repo.GetAll();
+                    if (books != null)
+                    {
+                        HttpContext.Session.SetString("searchMsg", "Searched for - " + query);
+                        var bookList = books.ToList();
+                        for (int i = 0; i < bookList.Count; i++)
+                        {
+                            bookList[i].Genres = await GetGenres(bookList[i].Id, token);
+                        }
+                        var querriedBookList = bookList.Where(qbl => (qbl.Title + "," + qbl.Author + "," + qbl.Language + "," + string.Join(",", qbl.Genres.Select(g => g.Name).ToList())).Contains(query)).ToList();
+                        if (querriedBookList != null && querriedBookList.Count > 0)
+                        {
+                            return View(querriedBookList);
+                        }
+                        else
+                        {
+                            HttpContext.Session.SetString("searchMsg", "Searched for - " + query + " - No books found");
+                        }
+                        return RedirectToAction("Index", "Book", new { area = "" });
+                    }
                     return RedirectToAction("Index", "Book", new { area = "" });
                 }
-                string token = HttpContext.Session.GetString("token");
-                _repo.GetToken(token);
-                var books = await _repo.Search(query);
-                if (books != null)
-                {
-                    HttpContext.Session.SetString("searchMsg", "Searched for - " + query);
-                    return View(books);
-                }
+                return RedirectToAction("Login", "User", new { area = "" });
+            }
+            else
+            {
                 return RedirectToAction("Index", "Book", new { area = "" });
             }
-            return RedirectToAction("Login", "User", new { area = "" });
         }
 
         // GET: BookController/Details/5
@@ -59,9 +91,29 @@ namespace CarouselForBooksApplication.Controllers
         }
 
         // GET: BookController/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            if (HttpContext.Session.GetString("token") != null)
+            {
+
+                ViewBag.FullGenres = await getFullGenres();
+            }
+
             return View();
+        }
+
+        private async Task<List<SelectListItem>> getFullGenres()
+        {
+            List<SelectListItem> FullGenres = new List<SelectListItem>();
+            _genreRepo.GetToken(HttpContext.Session.GetString("token"));
+            var genres = await _genreRepo.GetAll();
+
+            foreach (var item in genres)
+            {
+                FullGenres.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+            }
+
+            return FullGenres;
         }
 
         // POST: BookController/Create
@@ -75,9 +127,15 @@ namespace CarouselForBooksApplication.Controllers
                 {
                     string token = HttpContext.Session.GetString("token");
                     _repo.GetToken(token); 
-                    book = await _repo.Add(book);
-                    if (book != null)
+                    var repobook = await _repo.Add(book);
+                    if (repobook != null)
                     {
+                        foreach (var item in book.SelectedGenreIds)
+                        {
+                            var bookGenre = new BookGenre { BookId = repobook.Id, GenreId = item };
+                            _bookGenreRepo.GetToken(token);
+                            await _bookGenreRepo.Add(bookGenre);
+                        }
                         return RedirectToAction(nameof(Index));
                     }
                     return View();
@@ -93,6 +151,7 @@ namespace CarouselForBooksApplication.Controllers
         // GET: BookController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
+            ViewBag.FullGenres = await getFullGenres();
             return await GetBookDetails(id);
         }
         public async Task<ActionResult> AddToCart(int id)
@@ -115,7 +174,9 @@ namespace CarouselForBooksApplication.Controllers
                     {
                         HttpContext.Session.SetString("cartitems", "0");
                     }
-                    HttpContext.Session.SetString("message", "Successfully added to cart");
+                    _repo.GetToken(token);
+                    var book = await _repo.GetT(id);
+                    HttpContext.Session.SetString("message", "Successfully added {" + book.Title + "} to cart");
                     return RedirectToAction("Index", "Book", new { area = "" });
                 }
                 return RedirectToAction("Index", "Book", new { area = "" });
@@ -135,9 +196,22 @@ namespace CarouselForBooksApplication.Controllers
                 {
                     string token = HttpContext.Session.GetString("token");
                     _repo.GetToken(token);
-                    book = await _repo.Update(book);
-                    if (book != null)
+                    var repobook = await _repo.Update(book);
+                    if (repobook != null)
                     {
+                        _bookGenreRepo.GetToken(token);
+                        var bookGenres = (await _bookGenreRepo.GetAll()).Where(bg => bg.BookId == repobook.Id);
+                        foreach (var item in bookGenres)
+                        {
+                            _bookGenreRepo.GetToken(token);
+                            await _bookGenreRepo.Delete(item.Id);
+                        }
+                        foreach (var item in book.SelectedGenreIds)
+                        {
+                            var bookGenre = new BookGenre { BookId = repobook.Id, GenreId = item };
+                            _bookGenreRepo.GetToken(token);
+                            await _bookGenreRepo.Add(bookGenre);
+                        }
                         return RedirectToAction(nameof(Index));
                     }
                     return View();
@@ -165,11 +239,24 @@ namespace CarouselForBooksApplication.Controllers
                 var book = await _repo.GetT(id);
                 if (book != null)
                 {
+                    book.Genres = await GetGenres(id, token);
+                    book.SelectedGenreIds = book.Genres.Select(g => g.Id).ToList();
                     return View(book);
                 }
                 return NotFound();
             }
             return RedirectToAction("Login", "User", new { area = "" });
+        }
+
+        private async Task<List<Genre>> GetGenres(int id, string token)
+        {
+            _bookGenreRepo.GetToken(token);
+            _genreRepo.GetToken(token);
+            var bookGenres = await _bookGenreRepo.GetAll();
+            var genres = await _genreRepo.GetAll();
+            var tempBookGenres = bookGenres.Where(bg => bg.BookId == id).ToList();
+            var tempGenres = genres.Where(g => tempBookGenres.Select(tbg => tbg.GenreId).Contains(g.Id)).ToList();
+            return tempGenres;
         }
 
         // POST: BookController/Delete/5
@@ -183,9 +270,25 @@ namespace CarouselForBooksApplication.Controllers
                 {
                     string token = HttpContext.Session.GetString("token");
                     _repo.GetToken(token);
-                    book = await _repo.Delete(book.Id);
+                    book.Title = "unavailable";
+                    book.Author = "unavailable";
+                    book.Description = "unavailable";
+                    book.Language = "unavailable";
+                    book.Cost = 0;
+                    book.Picture = "/images/bookunavailable.png";
+                    book = await _repo.Update(book);
                     if (book != null)
                     {
+                        _cartRepo.GetToken(token);
+                        var carts = (await _cartRepo.GetAll()).Where(c => c.BookId == book.Id).ToList();
+                        if (carts != null || carts.Count > 0)
+                        {
+                            for (int i = 0; i < carts.Count; i++)
+                            {
+                                _cartRepo.GetToken(token);
+                                carts[i] = await _cartRepo.Delete(carts[i].CartId);
+                            }
+                        }
                         return RedirectToAction(nameof(Index));
                     }
                     return View();

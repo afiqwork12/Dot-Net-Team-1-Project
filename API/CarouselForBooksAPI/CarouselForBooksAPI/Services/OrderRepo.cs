@@ -1,4 +1,5 @@
 ﻿using CarouselForBooksAPI.Models;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,16 +13,18 @@ namespace CarouselForBooksAPI.Services
     public class OrderRepo : IOrder<int, Order, string>
     {
         private readonly HttpClient _httpClient;
-        public OrderRepo()
+        private readonly string apiLink;
+        public OrderRepo(IConfiguration configuration)
         {
             _httpClient = new HttpClient();
+            apiLink = configuration["OrderAPILink"];
         }
         public async Task<Order> Add(Order item)
         {
             using (_httpClient)
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-                using (var response = await _httpClient.PostAsync("http://localhost:36621/api/orders/", content))
+                using (var response = await _httpClient.PostAsync(apiLink + "/api/orders/", content))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -38,7 +41,7 @@ namespace CarouselForBooksAPI.Services
         {
             using (_httpClient)
             {
-                using (var response = await _httpClient.DeleteAsync("http://localhost:36621/api/orders/" + key))
+                using (var response = await _httpClient.DeleteAsync(apiLink + "/api/orders/" + key))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -55,7 +58,7 @@ namespace CarouselForBooksAPI.Services
         {
             using (_httpClient)
             {
-                using (var response = await _httpClient.GetAsync("http://localhost:36621/api/orders/" + key))
+                using (var response = await _httpClient.GetAsync(apiLink + "/api/orders/" + key))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -72,7 +75,7 @@ namespace CarouselForBooksAPI.Services
         {
             using (_httpClient)
             {
-                using (var response = await _httpClient.GetAsync("http://localhost:36621/api/orders/"))
+                using (var response = await _httpClient.GetAsync(apiLink + "/api/orders/"))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -89,7 +92,7 @@ namespace CarouselForBooksAPI.Services
         {
             using (_httpClient)
             {
-                using (var response = await _httpClient.GetAsync("http://localhost:36621/api/orders/user/" + username))
+                using (var response = await _httpClient.GetAsync(apiLink + "/api/orders/user/" + username))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -107,7 +110,7 @@ namespace CarouselForBooksAPI.Services
             using (_httpClient)
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-                using (var response = await _httpClient.PutAsync("http://localhost:36621/api/orders/" + item.Id, content))
+                using (var response = await _httpClient.PutAsync(apiLink + "/api/orders/" + item.Id, content))
                 {
                     if (response.IsSuccessStatusCode)
                     {

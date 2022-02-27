@@ -2,6 +2,10 @@
 @inject IHttpContextAccessor HttpContextAccessor
 @model IEnumerable<CarouselForBooksApplication.Models.Book>
 
+@{
+    ViewData["Title"] = "Books";
+}
+
 <style>
     #divCard {
         position: relative;
@@ -63,7 +67,15 @@
                     <img class="card-img-top" src="@Url.Content(item.Picture)" alt="Card image cap" height="350" width="259">
                 </a>
                 <div class="card-body text-center">
-                    <h5 class="card-title"><b>@item.Title</b> <br /><b>by @item.Author</b> <br /> <b>Price:</b> $@item.Cost</h5>
+                    <h5 class="card-title">
+                        <b>@item.Title</b><br />
+                        <b>by </b>@item.Author<br />
+                        <b>Price: </b>$@item.Cost<br />
+                        <b>Language: </b> @item.Language<br />
+                        <b>Genres: </b> @{ var genre = string.Join(",", item.Genres.Select(g => g.Name).ToList()); }
+                            @(genre.Length < 20 ? @genre : (@genre.Substring(0, 20) + "..."))
+                            @*@Html.DropDownList("Genres", new SelectList(item.Genres.Select(g => g.Name).ToList()), new { @class = "form-control", @readonly = "readonly" })*@
+                    </h5>
                     <div class="card-footer">
                         @if (HttpContextAccessor.HttpContext.Session.GetString("role") != null)
                         {
@@ -71,7 +83,7 @@
                             {
                                 <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Edit</a>@:&nbsp;
                                 <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">View Details</a>
-                                @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                             }
                             else
                             {

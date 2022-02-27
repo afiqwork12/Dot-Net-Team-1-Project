@@ -23,7 +23,7 @@ namespace CarouselForBooksApplication.Services
             using (_httpClient)
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-                using (var response = await _httpClient.PostAsync("https://localhost:50451/api/genres/", content))
+                using (var response = await _httpClient.PostAsync("http://localhost:50451/api/genres/", content))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -40,7 +40,7 @@ namespace CarouselForBooksApplication.Services
         {
             using (_httpClient)
             {
-                using (var response = await _httpClient.DeleteAsync("https://localhost:50451/api/genres/" + key))
+                using (var response = await _httpClient.DeleteAsync("http://localhost:50451/api/genres/" + key))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -57,7 +57,7 @@ namespace CarouselForBooksApplication.Services
         {
             using (_httpClient)
             {
-                using (var response = await _httpClient.GetAsync("https://localhost:50451/api/genres/" + key))
+                using (var response = await _httpClient.GetAsync("http://localhost:50451/api/genres/" + key))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -72,9 +72,11 @@ namespace CarouselForBooksApplication.Services
 
         public async Task<IEnumerable<Genre>> GetAll()
         {
-            using (_httpClient)
+            using (var _httpClient1 = new HttpClient())
             {
-                using (var response = await _httpClient.GetAsync("https://localhost:50451/api/genres/"))
+                _httpClient1.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                _httpClient1.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+                using (var response = await _httpClient1.GetAsync("http://localhost:50451/api/genres/"))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -92,7 +94,7 @@ namespace CarouselForBooksApplication.Services
             using (_httpClient)
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-                using (var response = await _httpClient.PutAsync("https://localhost:50451/api/genres/", content))
+                using (var response = await _httpClient.PutAsync("http://localhost:50451/api/genres/", content))
                 {
                     if (response.IsSuccessStatusCode)
                     {

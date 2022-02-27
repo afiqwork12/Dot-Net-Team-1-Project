@@ -1,5 +1,5 @@
 ﻿@model CarouselForBooksApplication.Models.Book
-
+@{ var langauges = new Languages();}
 @{
     ViewData["Title"] = "Create";
 }
@@ -8,46 +8,61 @@
 
 <h4>Book</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Author" class="control-label"></label>
-                <input asp-for="Author" class="form-control" />
-                <span asp-validation-for="Author" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Language" class="control-label"></label>
-                <input asp-for="Language" class="form-control" />
-                <span asp-validation-for="Language" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cost" class="control-label"></label>
-                <input asp-for="Cost" class="form-control" />
-                <span asp-validation-for="Cost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Picture" class="control-label"></label>
-                <input asp-for="Picture" class="form-control" />
-                <span asp-validation-for="Picture" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
-</div>
+
+<table class="table table-responsive">
+    <tbody>
+        <tr>
+            <td width="300">
+                <img id="pic" src="/images/bookexample.png" alt="example book cover" height="400" width="300">
+            </td>
+            <td>
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Author" class="control-label"></label>
+                        <input asp-for="Author" class="form-control" />
+                        <span asp-validation-for="Author" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        @Html.TextAreaFor(m => m.Description, 10, 40, new { @class = "form-control", @style = "width: 100%; max-width: 100%;" })
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Language" class="control-label"></label>
+                        @*<input asp-for="Language" class="form-control" />*@
+                        @Html.DropDownListFor(m => m.Language, @langauges.LanguageList, "Select a language", new { @class = "form-control" })
+                        <span asp-validation-for="Language" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cost" class="control-label"></label>
+                        <input asp-for="Cost" class="form-control" />
+                        <span asp-validation-for="Cost" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Picture" class="control-label"></label>
+                        <input id="picTxt" asp-for="Picture" class="form-control" oninput="$('#pic').attr('src', $('#picTxt').val());" />
+                        <span asp-validation-for="Picture" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SelectedGenreIds" class="control-label"></label>
+                        @Html.ListBoxFor(m => m.SelectedGenreIds, ViewBag.FullGenres as List<SelectListItem>, new { @class = "form-control", @multiple = "multiple" })
+                        <span>Hold the CTRL Key to select multiple genres</span>
+                        <span asp-validation-for="SelectedGenreIds" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 <div>
     <a asp-action="Index">Back to List</a>

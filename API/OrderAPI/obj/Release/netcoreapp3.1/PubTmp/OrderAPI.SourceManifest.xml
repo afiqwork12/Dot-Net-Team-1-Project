@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\Afiq\Documents\GitHub\Dot-Net-Team-1-Project\API\OrderAPI\obj\Release\netcoreapp3.1\PubTmp\Out\" />
+  <dbfullsql path="C:\Users\Afiq\Documents\GitHub\Dot-Net-Team-1-Project\API\OrderAPI\obj\Release\netcoreapp3.1\PubTmp\EFSQLScripts\OrderAPI.Models.OrderAPIContext.sql" />
+</sitemanifest>

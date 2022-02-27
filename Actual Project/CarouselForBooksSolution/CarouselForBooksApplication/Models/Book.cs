@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CarouselForBooksApplication.Models
 {
@@ -20,9 +21,14 @@ namespace CarouselForBooksApplication.Models
         [Required(ErrorMessage = "Language is required.")]
         public string Language { get; set; }
         [Required(ErrorMessage = "Cost is required.")]
+        [DataType(DataType.Currency)]
         public double Cost { get; set; }
         [Required(ErrorMessage = "Picture is required.")]
         [Display(Name = "Image Link")]
         public string Picture { get; set; }
+        public List<Genre> Genres { get; set; }
+        [Required(ErrorMessage = "Genre is required.")]
+        [Display(Name = "Genre")]
+        public List<int> SelectedGenreIds { get; set; }
     }
 }

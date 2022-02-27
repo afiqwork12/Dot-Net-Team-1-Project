@@ -54,12 +54,19 @@
                             @Html.DisplayFor(model => model.Cost)
                             <hr />
                         </dd>
-                        @*<dt>
-                            @Html.DisplayNameFor(model => model.Picture)
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Genres)
                         </dt>
                         <dd>
-                            <img src="@Url.Content(Model.Picture)" alt="Card image cap" height="400" width="300">
-                        </dd>*@
+                            @string.Join(", ", Model.Genres.Select(g => g.Name).ToList())
+                            <hr />
+                        </dd>
+                        @*<dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+        <dd>
+            <img src="@Url.Content(Model.Picture)" alt="Card image cap" height="400" width="300">
+        </dd>*@
                     </dl>
                 </td>
             </tr>

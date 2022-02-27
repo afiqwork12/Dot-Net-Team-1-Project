@@ -3,77 +3,54 @@
 @{
     ViewData["Title"] = "Index";
 }
+
+<style>
+    #divCard {
+        position: relative;
+        float: left;
+        margin: 10px;
+    }
+</style>
+
 <partial name="_MessagePartial" />
 <h2>Cart</h2>
 
 @if (Model != null)
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div id="divCard" class="card" style="border:double 3px; padding: 3px; border-radius: 2px;">
+                    <a asp-action="Details" asp-route-id="@item.Book.Id">
+                        <img class="card-img-top" src="@Url.Content(item.Book.Picture)" alt="Card image cap" height="350" width="260">
+                    </a>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">
+                            <b>@Html.DisplayFor(modelItem => item.Book.Title)</b>
+                            <br />
+                            @Html.DisplayFor(modelItem => item.Book.Cost)
+                        </h5>
+                        <div class="card-footer text-center">
+                            <b>@Html.DisplayNameFor(modelItem => item.Quantity)</b>
+                            <br />
+                            <a class="btn btn-default" asp-action="Increase" asp-route-CartId="@item.CartId"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                            <a class="btn btn-default" asp-action="Decrease" asp-route-CartId="@item.CartId"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
+                            <br />
+                            <b>@Html.DisplayNameFor(model => model.TotalCost) : </b> @Html.DisplayFor(modelItem => item.TotalCost)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Book.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Book.Cost)
-                </th>
-                <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Quantity)
-                </th>
-                <th class="text-right">
-                    @Html.DisplayNameFor(model => model.TotalCost)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <img class="card-img-top" src="@Url.Content(item.Book.Picture)" alt="Card image cap" height="150" width="150">
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Book.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Book.Cost)
-                    </td>
-                    <td class="text-center">
-                        <a class="btn btn-default" asp-action="Increase" asp-route-CartId="@item.CartId"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                        @Html.DisplayFor(modelItem => item.Quantity)
-                        <a class="btn btn-default" asp-action="Decrease" asp-route-CartId="@item.CartId"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
-                    </td>
-                    <td class="text-right">
-                        @Html.DisplayFor(modelItem => item.TotalCost)
-                    </td>
-                </tr>
-            }
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="text-right">Total: @string.Format("{0:C}", Model.Sum(m => m.TotalCost))</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="text-right"><a class="btn btn-success" asp-action="ConfirmOrder">Confirm Order</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="text-right"><a class="btn btn-danger" asp-action="Delete">Clear Cart</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="text-right">
+        <b>Total:</b>@string.Format("{0:C}", Model.Sum(m => m.TotalCost))
+        <a class="btn btn-success" asp-action="ConfirmOrder">Confirm Order</a>
+        <a class="btn btn-danger" asp-action="Delete">Clear Cart</a>
+    </div>
 }
 else
 {

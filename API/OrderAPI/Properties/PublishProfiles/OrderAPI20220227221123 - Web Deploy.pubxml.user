@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARJpvuK82wE+3glaA51dxaQAAAAACAAAAAAAQZgAAAAEAACAAAADdqPg6CaVfnNvv6ur+W8ZHN1kVhfhWeZRVjSN3k22KdwAAAAAOgAAAAAIAACAAAAAoiKFTyAu7ymZTS0TWCpYzrPpX7vsz115MwMn9lo2vsoAAAAAs/7k3ElvkNY5Kcw89OZ4ts8JMYYF16xqR7h3PMmnaHAfxVbZHyFtKIqI7mDUnhM3vAr4g/zmdvhgDU6EwQzxGLCQ+H6LLVEeslHHVl0csvnmCvSSm3l+qyph+heOTgDT3Zqb/TMGtquE3KaoBfYBFfB3KcibCgrckPev1OeXSRUAAAADPMBUwg98Sfm1jWgA6LE37MFooKIbCdVH46FBxQwdmYgq8nkosam8HpCyjSVHhytWJFtUjt9Qe9lZyb4ggnMUH</EncryptedPassword>
+    <History>True|2022-02-27T14:22:29.2163961Z;True|2022-02-27T22:19:20.8357576+08:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="OrderAPI.Models.OrderAPIContext">
+      <Value>Data Source=tcp:orderapidbserver.database.windows.net,1433%3bInitial Catalog=OrderAPI_db%3bUser Id=afiq123%40orderapidbserver%3bPassword=msq%40AWVRn7ubqpt</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
